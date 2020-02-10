@@ -56,12 +56,7 @@ summary: "Library for recommending Mahou-San Miguel beers"
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mahoudata.core</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="kn">from</span> <span class="nn">pandas_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span> <span class="nn">scipy.spatial.distance</span> <span class="kn">import</span> <span class="n">pdist</span><span class="p">,</span> <span class="n">squareform</span>
-<span class="kn">from</span> <span class="nn">pandas_profiling</span> <span class="kn">import</span> <span class="n">ProfileReport</span>
-
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">nltk</span>
 </pre></div>
 
     </div>
@@ -91,6 +86,13 @@ summary: "Library for recommending Mahou-San Miguel beers"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Explore-using-data-profiling">Explore using data profiling<a class="anchor-link" href="#Explore-using-data-profiling">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following cell generates a Exploratory Data Analysis report in the <code>reports</code> folder</p>
+
 </div>
 </div>
 </div>
@@ -191,7 +193,7 @@ summary: "Library for recommending Mahou-San Miguel beers"
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-14-8a70658680c0&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">&lt;ipython-input-13-8a70658680c0&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>datamodel <span class="ansi-blue-fg">=</span> strategy<span class="ansi-blue-fg">.</span>model_builder<span class="ansi-blue-fg">(</span>df<span class="ansi-blue-fg">)</span>
 
 <span class="ansi-green-fg">/usr/local/github/mahoudata/mahoudata/core.py</span> in <span class="ansi-cyan-fg">model_builder</span><span class="ansi-blue-fg">(self, dataframe)</span>

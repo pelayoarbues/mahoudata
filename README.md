@@ -14,12 +14,7 @@ This file provides a brief introduction to the usage of mahoudata library
 from mahoudata.core import *
 
 from pandas_profiling import ProfileReport
-from sklearn.preprocessing import MinMaxScaler
-from scipy.spatial.distance import pdist, squareform
-from pandas_profiling import ProfileReport
-
 import pandas as pd
-import nltk
 ```
 
 ## Read data
@@ -29,6 +24,8 @@ df = pd.read_csv("./data/dataset-datathon.csv")
 ```
 
 ## Explore using data profiling
+
+The following cell generates a Exploratory Data Analysis report in the `reports` folder
 
 ```python
 profile = ProfileReport(df, title='Pandas Profiling Report', html={'style':{'full_width':True}})
@@ -71,7 +68,7 @@ datamodel = strategy.model_builder(df)
 
     NameError                                 Traceback (most recent call last)
 
-    <ipython-input-14-8a70658680c0> in <module>
+    <ipython-input-13-8a70658680c0> in <module>
     ----> 1 datamodel = strategy.model_builder(df)
     
 

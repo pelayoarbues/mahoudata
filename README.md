@@ -2,9 +2,13 @@
 > Library for recommending Mahou-San Miguel beers
 
 
-This file provides a brief introduction to the usage of mahoudata library
+This file provides a brief introduction to the usage of mahoudata library. Development has been carried out by using [nbdev](https://nbdev.fast.ai/tutorial/)
 
 ## Install
+
+Git clone: https://github.com/pelayoarbues/mahoudata.git
+
+For using the library in other projects:
 
 `pip install -e .`
 
@@ -68,7 +72,7 @@ datamodel = strategy.model_builder(df)
 
     NameError                                 Traceback (most recent call last)
 
-    <ipython-input-13-8a70658680c0> in <module>
+    <ipython-input-8-8a70658680c0> in <module>
     ----> 1 datamodel = strategy.model_builder(df)
     
 

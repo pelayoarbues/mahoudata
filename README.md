@@ -40,249 +40,14 @@ profile.to_file(output_file="./reports/raw_data_profile.html") #Check reports fo
 ```
 
 ## Remove duplicates
-According to profile there are 60% duplicates. Get rid of them
+According to profile there are 60% duplicates. Get rid of them.
+
 
 ```python
 df_clean = df.drop_duplicates(
 subset = df.columns.difference(['vajilla'])
 )
 ```
-
-```python
-df_clean
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Temperatura Servicio</th>
-      <th>vajilla</th>
-      <th>descripcion</th>
-      <th>maridaje</th>
-      <th>graduacion</th>
-      <th>lupulo_afrutado_citrico</th>
-      <th>lupulo_floral_herbal</th>
-      <th>amargor</th>
-      <th>color</th>
-      <th>maltoso</th>
-      <th>licoroso</th>
-      <th>afrutado</th>
-      <th>especias</th>
-      <th>acidez</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Cerveza de carácter único, inspirada en las La...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.4</td>
-      <td>NaN</td>
-      <td>0.7</td>
-      <td>2.5</td>
-      <td>0.4</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>1.2</td>
-      <td>NaN</td>
-      <td>0.5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Cerveza dorada, de espuma cremosa y consistent...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.5</td>
-      <td>NaN</td>
-      <td>0.7</td>
-      <td>2.5</td>
-      <td>0.4</td>
-      <td>0.5</td>
-      <td>1.4</td>
-      <td>1.3</td>
-      <td>NaN</td>
-      <td>0.3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Cerveza dorada, de espuma cremosa y consistent...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.5</td>
-      <td>NaN</td>
-      <td>0.7</td>
-      <td>2.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.7</td>
-      <td>1.3</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>La primera cerveza ecológica elaborada en España.</td>
-      <td>Pescados y mariscos crudos,hervidos o al vapor.</td>
-      <td>5.4</td>
-      <td>NaN</td>
-      <td>0.6</td>
-      <td>2.6</td>
-      <td>0.4</td>
-      <td>0.6</td>
-      <td>NaN</td>
-      <td>1.1</td>
-      <td>NaN</td>
-      <td>0.4</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Equilibrada con agradable amargor y notas tost...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.4</td>
-      <td>NaN</td>
-      <td>0.6</td>
-      <td>2.6</td>
-      <td>0.4</td>
-      <td>0.6</td>
-      <td>0.5</td>
-      <td>1.1</td>
-      <td>NaN</td>
-      <td>0.4</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1124</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Originaria de Ámsterdam, su receta hecha única...</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>5.0</td>
-      <td>NaN</td>
-      <td>0.6</td>
-      <td>2.1</td>
-      <td>0.7</td>
-      <td>0.9</td>
-      <td>1.0</td>
-      <td>1.2</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1145</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Una lager elaborada de acuerdo al método holan...</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>4.8</td>
-      <td>NaN</td>
-      <td>0.9</td>
-      <td>2.1</td>
-      <td>0.5</td>
-      <td>0.9</td>
-      <td>0.6</td>
-      <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1149</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Una cerveza con raíces alemanas.</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>6.5</td>
-      <td>NaN</td>
-      <td>0.4</td>
-      <td>2.2</td>
-      <td>0.6</td>
-      <td>1.2</td>
-      <td>0.3</td>
-      <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1159</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Su aroma frutal a manzana madura destaca sobre...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>4.8</td>
-      <td>NaN</td>
-      <td>0.8</td>
-      <td>2.2</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>1.0</td>
-      <td>1.4</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1188</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Cerveza tipo lager con un fuerte carácter tost...</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>6.4</td>
-      <td>NaN</td>
-      <td>0.8</td>
-      <td>2.9</td>
-      <td>0.9</td>
-      <td>0.7</td>
-      <td>1.4</td>
-      <td>1.8</td>
-      <td>NaN</td>
-      <td>0.3</td>
-    </tr>
-  </tbody>
-</table>
-<p>482 rows × 14 columns</p>
-</div>
-
-
 
 ## Run Recommender
 
@@ -640,14 +405,92 @@ recommender_df
 
 
 
-```python
 ## TO DO
-```
 
-```python
 Parse recommender_df as a dictionary where:
     - Each index is key and values are:
-        All values in row, except principal diagonal of matrix. 
+        Columnnames values in row, except the one corresponding to the principal diagonal of matrix. 
         Ordered by (add option for descending/ascending)
-        
+
+
+```python
+#For instance for index 1, we should obtain all values except column 1 ordered asc
+recommendations_example = pd.DataFrame(recommender_df[1].sort_values(ascending=True))
+recommendations_example #value 1 should not appear
 ```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>454</th>
+      <td>1.110223e-16</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1.084706e-02</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1.084706e-02</td>
+    </tr>
+    <tr>
+      <th>461</th>
+      <td>1.154931e-02</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>430</th>
+      <td>4.736606e-01</td>
+    </tr>
+    <tr>
+      <th>256</th>
+      <td>4.780530e-01</td>
+    </tr>
+    <tr>
+      <th>178</th>
+      <td>4.815789e-01</td>
+    </tr>
+    <tr>
+      <th>205</th>
+      <td>4.880580e-01</td>
+    </tr>
+    <tr>
+      <th>187</th>
+      <td>5.017451e-01</td>
+    </tr>
+  </tbody>
+</table>
+<p>482 rows × 1 columns</p>
+</div>
+
+

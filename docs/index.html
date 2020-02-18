@@ -117,7 +117,7 @@ summary: "Library for recommending Mahou-San Miguel beers"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Remove-duplicates">Remove duplicates<a class="anchor-link" href="#Remove-duplicates">&#182;</a></h2><p>According to profile there are 60% duplicates. Get rid of them</p>
+<h2 id="Remove-duplicates">Remove duplicates<a class="anchor-link" href="#Remove-duplicates">&#182;</a></h2><p>According to profile there are 60% duplicates. Get rid of them.</p>
 
 </div>
 </div>
@@ -133,259 +133,6 @@ summary: "Library for recommending Mahou-San Miguel beers"
 </pre></div>
 
     </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_clean</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Temperatura Servicio</th>
-      <th>vajilla</th>
-      <th>descripcion</th>
-      <th>maridaje</th>
-      <th>graduacion</th>
-      <th>lupulo_afrutado_citrico</th>
-      <th>lupulo_floral_herbal</th>
-      <th>amargor</th>
-      <th>color</th>
-      <th>maltoso</th>
-      <th>licoroso</th>
-      <th>afrutado</th>
-      <th>especias</th>
-      <th>acidez</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Cerveza de carácter único, inspirada en las La...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.4</td>
-      <td>NaN</td>
-      <td>0.7</td>
-      <td>2.5</td>
-      <td>0.4</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>1.2</td>
-      <td>NaN</td>
-      <td>0.5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Cerveza dorada, de espuma cremosa y consistent...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.5</td>
-      <td>NaN</td>
-      <td>0.7</td>
-      <td>2.5</td>
-      <td>0.4</td>
-      <td>0.5</td>
-      <td>1.4</td>
-      <td>1.3</td>
-      <td>NaN</td>
-      <td>0.3</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Cerveza dorada, de espuma cremosa y consistent...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.5</td>
-      <td>NaN</td>
-      <td>0.7</td>
-      <td>2.5</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>0.7</td>
-      <td>1.3</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>La primera cerveza ecológica elaborada en España.</td>
-      <td>Pescados y mariscos crudos,hervidos o al vapor.</td>
-      <td>5.4</td>
-      <td>NaN</td>
-      <td>0.6</td>
-      <td>2.6</td>
-      <td>0.4</td>
-      <td>0.6</td>
-      <td>NaN</td>
-      <td>1.1</td>
-      <td>NaN</td>
-      <td>0.4</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Equilibrada con agradable amargor y notas tost...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>5.4</td>
-      <td>NaN</td>
-      <td>0.6</td>
-      <td>2.6</td>
-      <td>0.4</td>
-      <td>0.6</td>
-      <td>0.5</td>
-      <td>1.1</td>
-      <td>NaN</td>
-      <td>0.4</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>1124</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Originaria de Ámsterdam, su receta hecha única...</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>5.0</td>
-      <td>NaN</td>
-      <td>0.6</td>
-      <td>2.1</td>
-      <td>0.7</td>
-      <td>0.9</td>
-      <td>1.0</td>
-      <td>1.2</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1145</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Una lager elaborada de acuerdo al método holan...</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>4.8</td>
-      <td>NaN</td>
-      <td>0.9</td>
-      <td>2.1</td>
-      <td>0.5</td>
-      <td>0.9</td>
-      <td>0.6</td>
-      <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1149</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Una cerveza con raíces alemanas.</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>6.5</td>
-      <td>NaN</td>
-      <td>0.4</td>
-      <td>2.2</td>
-      <td>0.6</td>
-      <td>1.2</td>
-      <td>0.3</td>
-      <td>1.0</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1159</th>
-      <td>4-6º</td>
-      <td>pilsner</td>
-      <td>Su aroma frutal a manzana madura destaca sobre...</td>
-      <td>Pescados a la plancha o marinados</td>
-      <td>4.8</td>
-      <td>NaN</td>
-      <td>0.8</td>
-      <td>2.2</td>
-      <td>0.5</td>
-      <td>0.5</td>
-      <td>1.0</td>
-      <td>1.4</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1188</th>
-      <td>4-6º</td>
-      <td>tulip</td>
-      <td>Cerveza tipo lager con un fuerte carácter tost...</td>
-      <td>Comidas especiadas o picosas, quesos grasos y ...</td>
-      <td>6.4</td>
-      <td>NaN</td>
-      <td>0.8</td>
-      <td>2.9</td>
-      <td>0.9</td>
-      <td>0.7</td>
-      <td>1.4</td>
-      <td>1.8</td>
-      <td>NaN</td>
-      <td>0.3</td>
-    </tr>
-  </tbody>
-</table>
-<p>482 rows × 14 columns</p>
-</div>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -826,32 +573,118 @@ summary: "Library for recommending Mahou-San Miguel beers"
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="TO-DO">TO DO<a class="anchor-link" href="#TO-DO">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Parse recommender_df as a dictionary where:</p>
+
+<pre><code>- Each index is key and values are:
+    Columnnames values in row, except the one corresponding to the principal diagonal of matrix. 
+    Ordered by (add option for descending/ascending)</code></pre>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## TO DO</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#For instance for index 1, we should obtain all values except column 1 ordered asc</span>
+<span class="n">recommendations_example</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">recommender_df</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">recommendations_example</span> <span class="c1">#value 1 should not appear</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.000000e+00</td>
+    </tr>
+    <tr>
+      <th>454</th>
+      <td>1.110223e-16</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1.084706e-02</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1.084706e-02</td>
+    </tr>
+    <tr>
+      <th>461</th>
+      <td>1.154931e-02</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>430</th>
+      <td>4.736606e-01</td>
+    </tr>
+    <tr>
+      <th>256</th>
+      <td>4.780530e-01</td>
+    </tr>
+    <tr>
+      <th>178</th>
+      <td>4.815789e-01</td>
+    </tr>
+    <tr>
+      <th>205</th>
+      <td>4.880580e-01</td>
+    </tr>
+    <tr>
+      <th>187</th>
+      <td>5.017451e-01</td>
+    </tr>
+  </tbody>
+</table>
+<p>482 rows × 1 columns</p>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+</div>
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Parse</span> <span class="n">recommender_df</span> <span class="k">as</span> <span class="n">a</span> <span class="n">dictionary</span> <span class="n">where</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">Each</span> <span class="n">index</span> <span class="ow">is</span> <span class="n">key</span> <span class="ow">and</span> <span class="n">values</span> <span class="n">are</span><span class="p">:</span>
-        <span class="n">All</span> <span class="n">values</span> <span class="ow">in</span> <span class="n">row</span><span class="p">,</span> <span class="k">except</span> <span class="n">principal</span> <span class="n">diagonal</span> <span class="n">of</span> <span class="n">matrix</span><span class="o">.</span> 
-        <span class="n">Ordered</span> <span class="n">by</span> <span class="p">(</span><span class="n">add</span> <span class="n">option</span> <span class="k">for</span> <span class="n">descending</span><span class="o">/</span><span class="n">ascending</span><span class="p">)</span>
-        
-</pre></div>
+</div>
 
-    </div>
 </div>
 </div>
 

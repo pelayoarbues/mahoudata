@@ -3,6 +3,15 @@
 __all__ = ['PreProcess', 'RecommenderStrategyFactory', 'NumericStrategy']
 
 # Cell
+from sklearn.preprocessing import MinMaxScaler
+from scipy.spatial.distance import pdist, squareform
+from pandas_profiling import ProfileReport
+
+import pandas as pd
+import numpy as np
+import nltk
+
+# Cell
 class PreProcess:
     "Preprocess class to include all data preparation functions"
     def __init__(self, ctx):
@@ -27,20 +36,40 @@ class PreProcess:
         cols.insert(0, cols.pop(cols.index('beerID')))
         df = df.reindex(columns= cols)
 
-        #fillna with 0
-        #TODO: Augment to replace by median/mean
-        if fillna:
-            df = df.fillna(0)
+        #Convert to lowercase
+        df = df.applymap(lambda s:s.lower() if type(s) == str else s)
+
+        #Removes c from
+        df['temperatura'] = df['temperatura'].replace('c', '')
 
         return df
 
+    def fill_na(self, dataframe, method = 'median'):
+        "Replaces NaN values with method"
+        if method == '0':
+            df = dataframe.fillna(0)
+
+        if method == 'mean':
+            df = dataframe.fillna(dataframe.mean())
+
+        else:
+            df = dataframe.fillna(dataframe.median())
+
+        return df
+
+
+
     def scale_cols(self, dataframe):
         "Min Max scaler for numeric columns"
+        #num_cols = dataframe.columns[dataframe.dtypes.apply(lambda c: np.issubdtype(c, np.number))]
+
         scaler = MinMaxScaler()
+        #dataframe[num_cols] = scaler.fit_transform(dataframe[num_cols])
         df_scaled = pd.DataFrame(
             scaler.fit_transform(dataframe[self.ctx['numeric_cols']]),
                                  columns=dataframe[self.ctx['numeric_cols']].columns
             )
+
         return df_scaled
 
 # Cell
@@ -68,8 +97,11 @@ class NumericStrategy:
 
     def model_builder(self, dataframe):
         preprocessor = PreProcess(self.ctx)
-        df = preprocessor.cols_munging(dataframe, fillna = True)
+        df = preprocessor.cols_munging(dataframe)
+        df = preprocessor.fill_na(df, 'median')
         df = preprocessor.scale_cols(df)
+
+
         return df
 
     def exec_strategy(self, dataframe, distance = 'cosine'):

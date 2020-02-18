@@ -14,7 +14,7 @@ For using the library in other projects:
 
 # How to use
 
-```python
+```
 from mahoudata.core import *
 
 from pandas_profiling import ProfileReport
@@ -23,7 +23,7 @@ import pandas as pd
 
 ## Read data
 
-```python
+```
 df = pd.read_csv("./data/dataset-datathon.csv")
 ```
 
@@ -31,7 +31,7 @@ df = pd.read_csv("./data/dataset-datathon.csv")
 
 The following cell generates a Exploratory Data Analysis report in the `reports` folder
 
-```python
+```
 profile = ProfileReport(df, title='Pandas Profiling Report', html={'style':{'full_width':True}})
 profile.to_file(output_file="./reports/raw_data_profile.html") #Check reports folder
 
@@ -43,7 +43,7 @@ profile.to_file(output_file="./reports/raw_data_profile.html") #Check reports fo
 
 First step is to create a context. At the moment it only defines the column names of numeric variables. Further options for the program might be added here.
 
-```python
+```
 context = {'numeric_cols' : ['lupulo_afrutado_citrico', 
                              'lupulo_floral_herbal','amargor', 'color', 
                              'maltoso', 'licoroso', 'afrutado', 'especias','acidez']
@@ -54,7 +54,7 @@ Next step is to select the type of recommender we want to run.
 
 For the moment, only `numeric` type has been partially developed. The `numeric` strategy computes cosine distances among numeric vectors.
 
-```python
+```
 f = RecommenderStrategyFactory(context)
 
 strategy = f.createStrategy('numeric')
@@ -63,7 +63,7 @@ strategy = f.createStrategy('numeric')
 
 Then we can use the `model_builder` function to prepare data for the recommender algorithm:
 
-```python
+```
 datamodel = strategy.model_builder(df)
 ```
 
@@ -72,7 +72,7 @@ datamodel = strategy.model_builder(df)
 
     NameError                                 Traceback (most recent call last)
 
-    <ipython-input-8-8a70658680c0> in <module>
+    <ipython-input-5-8a70658680c0> in <module>
     ----> 1 datamodel = strategy.model_builder(df)
     
 
@@ -97,12 +97,12 @@ datamodel = strategy.model_builder(df)
 
 For executing the recommender algorithm we can run:
 
-```python
+```
 recommender_df = strategy.exec_strategy(datamodel)
 ```
 
 If we explore recommender_df we can see that at this stage, it is a squared symmetric matrix.
 
-```python
+```
 recommender_df
 ```

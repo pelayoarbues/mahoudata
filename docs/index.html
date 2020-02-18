@@ -208,6 +208,79 @@ summary: "Library for recommending Mahou-San Miguel beers"
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansi-green-fg">~/anaconda3/envs/mahoudata/lib/python3.6/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2645</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2646</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2647</span>             <span class="ansi-green-fg">except</span> KeyError<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-red-fg">KeyError</span>: &#39;temperatura&#39;
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-7-6d779bd24930&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>datamodel <span class="ansi-blue-fg">=</span> strategy<span class="ansi-blue-fg">.</span>model_builder<span class="ansi-blue-fg">(</span>df_clean<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/github/mahoudata/mahoudata/core.py</span> in <span class="ansi-cyan-fg">model_builder</span><span class="ansi-blue-fg">(self, dataframe)</span>
+<span class="ansi-green-intense-fg ansi-bold">     98</span>     <span class="ansi-green-fg">def</span> model_builder<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> dataframe<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     99</span>         preprocessor <span class="ansi-blue-fg">=</span> PreProcess<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>ctx<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 100</span><span class="ansi-red-fg">         </span>df <span class="ansi-blue-fg">=</span> preprocessor<span class="ansi-blue-fg">.</span>cols_munging<span class="ansi-blue-fg">(</span>dataframe<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    101</span>         df <span class="ansi-blue-fg">=</span> preprocessor<span class="ansi-blue-fg">.</span>fill_na<span class="ansi-blue-fg">(</span>df<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;median&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    102</span>         df <span class="ansi-blue-fg">=</span> preprocessor<span class="ansi-blue-fg">.</span>scale_cols<span class="ansi-blue-fg">(</span>df<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/usr/local/github/mahoudata/mahoudata/core.py</span> in <span class="ansi-cyan-fg">cols_munging</span><span class="ansi-blue-fg">(self, dataframe, fillna)</span>
+<span class="ansi-green-intense-fg ansi-bold">     41</span> 
+<span class="ansi-green-intense-fg ansi-bold">     42</span>         <span class="ansi-red-fg">#Removes c from</span>
+<span class="ansi-green-fg">---&gt; 43</span><span class="ansi-red-fg">         </span>df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;temperatura&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;temperatura&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>replace<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;c&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     44</span> 
+<span class="ansi-green-intense-fg ansi-bold">     45</span>         <span class="ansi-green-fg">return</span> df
+
+<span class="ansi-green-fg">~/anaconda3/envs/mahoudata/lib/python3.6/site-packages/pandas/core/frame.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2798</span>             <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>nlevels <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   2799</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_getitem_multilevel<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">-&gt; 2800</span><span class="ansi-red-fg">             </span>indexer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2801</span>             <span class="ansi-green-fg">if</span> is_integer<span class="ansi-blue-fg">(</span>indexer<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   2802</span>                 indexer <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>indexer<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/mahoudata/lib/python3.6/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2646</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2647</span>             <span class="ansi-green-fg">except</span> KeyError<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2648</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_maybe_cast_indexer<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2649</span>         indexer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>get_indexer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span>key<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> method<span class="ansi-blue-fg">=</span>method<span class="ansi-blue-fg">,</span> tolerance<span class="ansi-blue-fg">=</span>tolerance<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2650</span>         <span class="ansi-green-fg">if</span> indexer<span class="ansi-blue-fg">.</span>ndim <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">1</span> <span class="ansi-green-fg">or</span> indexer<span class="ansi-blue-fg">.</span>size <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-red-fg">KeyError</span>: &#39;temperatura&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -276,10 +349,10 @@ summary: "Library for recommending Mahou-San Miguel beers"
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-1-b48ba47e7fd7&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">&lt;ipython-input-8-b48ba47e7fd7&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>RecommenderHelper<span class="ansi-blue-fg">.</span>get_top_recommendations<span class="ansi-blue-fg">(</span>recommender_df<span class="ansi-blue-fg">,</span> beerID<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> topk<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">6</span><span class="ansi-blue-fg">,</span> sort_asc<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-red-fg">NameError</span>: name &#39;RecommenderHelper&#39; is not defined</pre>
+<span class="ansi-red-fg">NameError</span>: name &#39;recommender_df&#39; is not defined</pre>
 </div>
 </div>
 

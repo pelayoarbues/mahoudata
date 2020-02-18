@@ -27,7 +27,7 @@ class PreProcess:
     def cols_munging(self, dataframe, fillna = True):
         "Columns preparation method"
         #Rename column
-        df = dataframe.rename(columns={"Temperatura_Servicio":"temperatura"})
+        df = dataframe.rename(columns={"Temperatura Servicio":"temperatura"})
         #Create ID for beers
         df['beerID'] = (range(1, len(df) + 1))
         df = df.set_index(df['beerID'].astype(str))

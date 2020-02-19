@@ -77,88 +77,6 @@ Then we can use the `model_builder` function to prepare data for the recommender
 datamodel = strategy.model_builder(df_clean)
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    KeyError                                  Traceback (most recent call last)
-
-    ~/anaconda3/envs/mahoudata/lib/python3.6/site-packages/pandas/core/indexes/base.py in get_loc(self, key, method, tolerance)
-       2645             try:
-    -> 2646                 return self._engine.get_loc(key)
-       2647             except KeyError:
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    KeyError: 'temperatura'
-
-    
-    During handling of the above exception, another exception occurred:
-
-
-    KeyError                                  Traceback (most recent call last)
-
-    <ipython-input-7-6d779bd24930> in <module>
-    ----> 1 datamodel = strategy.model_builder(df_clean)
-    
-
-    /usr/local/github/mahoudata/mahoudata/core.py in model_builder(self, dataframe)
-         98     def model_builder(self, dataframe):
-         99         preprocessor = PreProcess(self.ctx)
-    --> 100         df = preprocessor.cols_munging(dataframe)
-        101         df = preprocessor.fill_na(df, 'median')
-        102         df = preprocessor.scale_cols(df)
-
-
-    /usr/local/github/mahoudata/mahoudata/core.py in cols_munging(self, dataframe, fillna)
-         41 
-         42         #Removes c from
-    ---> 43         df['temperatura'] = df['temperatura'].replace('c', '')
-         44 
-         45         return df
-
-
-    ~/anaconda3/envs/mahoudata/lib/python3.6/site-packages/pandas/core/frame.py in __getitem__(self, key)
-       2798             if self.columns.nlevels > 1:
-       2799                 return self._getitem_multilevel(key)
-    -> 2800             indexer = self.columns.get_loc(key)
-       2801             if is_integer(indexer):
-       2802                 indexer = [indexer]
-
-
-    ~/anaconda3/envs/mahoudata/lib/python3.6/site-packages/pandas/core/indexes/base.py in get_loc(self, key, method, tolerance)
-       2646                 return self._engine.get_loc(key)
-       2647             except KeyError:
-    -> 2648                 return self._engine.get_loc(self._maybe_cast_indexer(key))
-       2649         indexer = self.get_indexer([key], method=method, tolerance=tolerance)
-       2650         if indexer.ndim > 1 or indexer.size > 1:
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    KeyError: 'temperatura'
-
-
 For executing the recommender algorithm we can run:
 
 ```python
@@ -176,18 +94,6 @@ recommender_df
 ```python
 RecommenderHelper.get_top_recommendations(recommender_df, beerID=1, topk=6, sort_asc=True)
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-8-b48ba47e7fd7> in <module>
-    ----> 1 RecommenderHelper.get_top_recommendations(recommender_df, beerID=1, topk=6, sort_asc=True)
-    
-
-    NameError: name 'recommender_df' is not defined
-
 
 ## TO DO
 

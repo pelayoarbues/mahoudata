@@ -39,6 +39,16 @@ profile.to_file(output_file="./reports/raw_data_profile.html") #Check reports fo
 #profile.to_notebook_iframe() ## Explore using data profiling
 ```
 
+## Remove duplicates
+According to profile there are 60% duplicates. Get rid of them.
+
+
+```python
+df_clean = df.drop_duplicates(
+subset = df.columns.difference(['vajilla'])
+)
+```
+
 ## Run Recommender
 
 First step is to create a context. At the moment it only defines the column names of numeric variables. Further options for the program might be added here.
@@ -64,36 +74,8 @@ strategy = f.createStrategy('numeric')
 Then we can use the `model_builder` function to prepare data for the recommender algorithm:
 
 ```python
-datamodel = strategy.model_builder(df)
+datamodel = strategy.model_builder(df_clean)
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    <ipython-input-8-8a70658680c0> in <module>
-    ----> 1 datamodel = strategy.model_builder(df)
-    
-
-    /usr/local/github/mahoudata/mahoudata/core.py in model_builder(self, dataframe)
-         70         preprocessor = PreProcess(self.ctx)
-         71         df = preprocessor.cols_munging(dataframe, fillna = True)
-    ---> 72         df = preprocessor.scale_cols(df)
-         73         return df
-         74 
-
-
-    /usr/local/github/mahoudata/mahoudata/core.py in scale_cols(self, dataframe)
-         37     def scale_cols(self, dataframe):
-         38         "Min Max scaler for numeric columns"
-    ---> 39         scaler = MinMaxScaler()
-         40         df_scaled = pd.DataFrame(
-         41             scaler.fit_transform(dataframe[self.ctx['numeric_cols']]),
-
-
-    NameError: name 'MinMaxScaler' is not defined
-
 
 For executing the recommender algorithm we can run:
 
@@ -106,3 +88,13 @@ If we explore recommender_df we can see that at this stage, it is a squared symm
 ```python
 recommender_df
 ```
+
+## GET TOP RECOMMENDATIONS
+
+```python
+RecommenderHelper.get_top_recommendations(recommender_df, beerID=1, topk=6, sort_asc=True)
+```
+
+## TO DO
+
+Improve RecommenderHelper.get_top_recommendations by parsing the dataframe as a dictionarys

@@ -117,6 +117,28 @@ summary: "Library for recommending Mahou-San Miguel beers"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Remove-duplicates">Remove duplicates<a class="anchor-link" href="#Remove-duplicates">&#182;</a></h2><p>According to profile there are 60% duplicates. Get rid of them.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="s1">&#39;vajilla&#39;</span><span class="p">])</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Run-Recommender">Run Recommender<a class="anchor-link" href="#Run-Recommender">&#182;</a></h2>
 </div>
 </div>
@@ -179,43 +201,10 @@ summary: "Library for recommending Mahou-San Miguel beers"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datamodel</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">.</span><span class="n">model_builder</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">datamodel</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">.</span><span class="n">model_builder</span><span class="p">(</span><span class="n">df_clean</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-8-8a70658680c0&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>datamodel <span class="ansi-blue-fg">=</span> strategy<span class="ansi-blue-fg">.</span>model_builder<span class="ansi-blue-fg">(</span>df<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/usr/local/github/mahoudata/mahoudata/core.py</span> in <span class="ansi-cyan-fg">model_builder</span><span class="ansi-blue-fg">(self, dataframe)</span>
-<span class="ansi-green-intense-fg ansi-bold">     70</span>         preprocessor <span class="ansi-blue-fg">=</span> PreProcess<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>ctx<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     71</span>         df <span class="ansi-blue-fg">=</span> preprocessor<span class="ansi-blue-fg">.</span>cols_munging<span class="ansi-blue-fg">(</span>dataframe<span class="ansi-blue-fg">,</span> fillna <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 72</span><span class="ansi-red-fg">         </span>df <span class="ansi-blue-fg">=</span> preprocessor<span class="ansi-blue-fg">.</span>scale_cols<span class="ansi-blue-fg">(</span>df<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     73</span>         <span class="ansi-green-fg">return</span> df
-<span class="ansi-green-intense-fg ansi-bold">     74</span> 
-
-<span class="ansi-green-fg">/usr/local/github/mahoudata/mahoudata/core.py</span> in <span class="ansi-cyan-fg">scale_cols</span><span class="ansi-blue-fg">(self, dataframe)</span>
-<span class="ansi-green-intense-fg ansi-bold">     37</span>     <span class="ansi-green-fg">def</span> scale_cols<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> dataframe<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         <span class="ansi-blue-fg">&#34;Min Max scaler for numeric columns&#34;</span>
-<span class="ansi-green-fg">---&gt; 39</span><span class="ansi-red-fg">         </span>scaler <span class="ansi-blue-fg">=</span> MinMaxScaler<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     40</span>         df_scaled = pd.DataFrame(
-<span class="ansi-green-intense-fg ansi-bold">     41</span>             scaler<span class="ansi-blue-fg">.</span>fit_transform<span class="ansi-blue-fg">(</span>dataframe<span class="ansi-blue-fg">[</span>self<span class="ansi-blue-fg">.</span>ctx<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;numeric_cols&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;MinMaxScaler&#39; is not defined</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -259,6 +248,38 @@ summary: "Library for recommending Mahou-San Miguel beers"
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GET-TOP-RECOMMENDATIONS">GET TOP RECOMMENDATIONS<a class="anchor-link" href="#GET-TOP-RECOMMENDATIONS">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">RecommenderHelper</span><span class="o">.</span><span class="n">get_top_recommendations</span><span class="p">(</span><span class="n">recommender_df</span><span class="p">,</span> <span class="n">beerID</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">topk</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">sort_asc</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="TO-DO">TO DO<a class="anchor-link" href="#TO-DO">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Improve RecommenderHelper.get_top_recommendations by parsing the dataframe as a dictionarys</p>
+
+</div>
+</div>
 </div>
 </div>
  

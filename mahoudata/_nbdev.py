@@ -4,7 +4,8 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"PreProcess": "00_core.ipynb",
          "RecommenderStrategyFactory": "00_core.ipynb",
-         "NumericStrategy": "00_core.ipynb"}
+         "NumericStrategy": "00_core.ipynb",
+         "RecommenderHelper": "00_core.ipynb"}
 
 modules = ["core.py"]
 

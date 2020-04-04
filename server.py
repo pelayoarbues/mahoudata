@@ -3,6 +3,7 @@ from pandas_profiling import ProfileReport
 import pandas as pd
 from flask import Flask,request
 from flask_cors import CORS
+from flask import render_template
 
 
 app = Flask(__name__)
@@ -40,6 +41,10 @@ def hello_world():
     aa = get_top_recommendations(recommender_df,beer_id)
 
     return aa.to_json()
+
+@app.route('/simpleViz')
+def simpleViz():
+    return render_template('simpleViz.html')
 
 
 if __name__=='__main__':

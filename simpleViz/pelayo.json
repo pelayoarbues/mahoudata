@@ -1,0 +1,107 @@
+[
+    {
+        "distritos": "Fuencarral - El Pardo",
+        "rat_10_000_2v": 2.91,
+        "casas_okupa": 68
+    },
+    {
+        "distritos": "Moncloa - Aravaca",
+        "rat_10_000_2v": 0.89,
+        "casas_okupa": 10
+    },
+    {
+        "distritos": "Villa de Vallecas",
+        "rat_10_000_2v": 19.44,
+        "casas_okupa": 214
+    },
+    {
+        "distritos": "San Blas - Vic\u00e1lvaro",
+        "rat_10_000_2v": 8.25,
+        "casas_okupa": 184
+    },
+    {
+        "distritos": "Hortaleza - Barajas",
+        "rat_10_000_2v": 3.7,
+        "casas_okupa": 82
+    },
+    {
+        "distritos": "Hortaleza - Barajas",
+        "rat_10_000_2v": 1.9,
+        "casas_okupa": 82
+    },
+    {
+        "distritos": "Chamber\u00ed",
+        "rat_10_000_2v": 0.3,
+        "casas_okupa": 4
+    },
+    {
+        "distritos": "Carabanchel",
+        "rat_10_000_2v": 10.47,
+        "casas_okupa": 256
+    },
+    {
+        "distritos": "Centro",
+        "rat_10_000_2v": 9.28,
+        "casas_okupa": 126
+    },
+    {
+        "distritos": "Retiro",
+        "rat_10_000_2v": 0.52,
+        "casas_okupa": 6
+    },
+    {
+        "distritos": "Chamart\u00edn",
+        "rat_10_000_2v": 1.13,
+        "casas_okupa": 16
+    },
+    {
+        "distritos": "Salamanca",
+        "rat_10_000_2v": 0.65,
+        "casas_okupa": 9
+    },
+    {
+        "distritos": "Arganzuela",
+        "rat_10_000_2v": 3.48,
+        "casas_okupa": 53
+    },
+    {
+        "distritos": "Tetu\u00e1n",
+        "rat_10_000_2v": 10.54,
+        "casas_okupa": 161
+    },
+    {
+        "distritos": "Moratalaz",
+        "rat_10_000_2v": 9.59,
+        "casas_okupa": 89
+    },
+    {
+        "distritos": "Usera - Villaverde",
+        "rat_10_000_2v": 18.2,
+        "casas_okupa": 504
+    },
+    {
+        "distritos": "Latina",
+        "rat_10_000_2v": 7.43,
+        "casas_okupa": 172
+    },
+    {
+        "distritos": "Puente de Vallecas",
+        "rat_10_000_2v": 19.5,
+        "casas_okupa": 438
+    },
+    {
+        "distritos": "Ciudad Lineal",
+        "rat_10_000_2v": 6.11,
+        "casas_okupa": 129
+    },
+    {
+        "distritos": "San Blas - Vic\u00e1lvaro",
+        "rat_10_000_2v": 8.25,
+        "casas_okupa": 184
+    },
+    {
+        "distritos": "Usera - Villaverde",
+        "rat_10_000_2v": 18.2,
+        "casas_okupa": 504
+    }
+]

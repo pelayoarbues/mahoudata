@@ -1,0 +1,11 @@
+#chart{
+  width: 300px;
+  height: 300px;
+}
+#recom-charts{
+  display: flex;
+}
+.range-cont{
+  display: inline-grid;
+  width: 240px;
+}

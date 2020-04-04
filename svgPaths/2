@@ -1,0 +1,42 @@
+
+    
+self = {};
+
+self.cats = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
+
+self.loadBeersData = function(){
+    d3.csv('dataset-datathon.csv',function(beers){
+        console.log("BEERS",beers)
+        self.beersData = beers;
+    })
+}
+
+self.draw = function(){
+
+    var svg = d3.select("#board").append("svg");
+
+    svg.append("line")
+        .attr("x1",0)
+        .attr("y1",0)
+        .attr("x2",300)
+        .attr("y2",300)
+        .style("fill","none")
+        .style("stroke","red")
+
+    var path = d3.select("body").append("svg")
+    svg.append("path")
+        .attr("d", "m0,0 l0,15 l15,15 z")
+        .attr("stroke", "blue")
+        .attr("stroke-width", "2")
+        .attr("fill", "none");
+
+}
+
+self.init = function(){
+    self.loadBeersData();
+    self.draw();
+}
+
+window.onload = self.init;
+
+

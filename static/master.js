@@ -38,16 +38,9 @@ self.drawSelector = function(){
 
 self.drawRecomCharts = function(){
 
-    console.log("DRAW RECOM");
     d3.select("#recom-charts").html('');
 
-    console.log("URL",'http://localhost:5000/?id='+self.referenceId);
-
-    /*{"beerID":{"0":673,"1":674,"2":675,"3":1169,"4":1186},"cosine_dist":{"0":0.0,"1":0.0,"2":0.0,"3":0.0056217473,"4":0.0056217473}}*/
-
-    d3.json('http://localhost:5000/?id='+self.referenceId,function(data){
-
-        console.log("LLEGA",data);
+    d3.json(`/beers/${self.referenceId}/recommendations`,function(data){
 
         let count = 0;
     
@@ -83,7 +76,7 @@ self.drawRecomCharts = function(){
 self.drawRecomBtn = function(){
 
     console.log("ASASAS BTN");
-    let recom_html = '<span id="recom-btn">Similares</span>';
+    let recom_html = '<button id="recom-btn">Similares</button>';
 
     d3.select("#recomend-container").html(recom_html);
 
@@ -122,9 +115,10 @@ self.initBaseRadar = function(){
 }
 
 self.loadBeersData = function(){
-    d3.csv('static/dataset-datathon.csv',function(beers){
-        console.log("BEERS",beers)
-        self.beersData = beers;
+    d3.json('/beers', function(beers){
+        console.log(beers.data?.length, 'Beers loaded')
+        console.dir(beers.schema)
+        self.beersData = beers.data;
     })
 }
 

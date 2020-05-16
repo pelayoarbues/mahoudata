@@ -8,6 +8,8 @@ from recommender import *
 
 app = Flask(__name__)
 CORS(app)
+# TODO just for dev
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/beers')
 def beers():
@@ -26,8 +28,6 @@ def beer_recommendations(beer_id):
 def simpleViz():
     return render_template('simpleViz.html')
 
-
 if __name__=='__main__':
-
 
     app.run(debug=True)

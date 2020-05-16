@@ -14,10 +14,10 @@ const displayBeerInfo = (beerId) => {
   const container = document.getElementById('beer-info')
   const beer = self.beersData[beerId]
   container.innerHTML = `
-            <p>Descripción: ${beer.descripcion}</p>
-            <p>Maridaje: ${beer.maridaje}</p>
-            <p>Temperatura de servicio: ${beer['Temperatura Servicio']}</p>
-        `
+    <p>Descripción: ${beer.descripcion}</p>
+    <p>Maridaje: ${beer.maridaje}</p>
+    <p>Temperatura de servicio: ${beer['Temperatura Servicio']}</p>
+  `
 }
 
 self.drawSelector = function () {
@@ -135,7 +135,7 @@ self.initBaseRadar = function () {
 
 self.loadBeersData = function () {
   d3.json('/beers', function (beers) {
-    console.log(beers.data ? .length, 'Beers loaded')
+    console.log(beers.data?.length, 'Beers loaded')
     console.dir(beers.schema)
     self.beersData = beers.data;
   })

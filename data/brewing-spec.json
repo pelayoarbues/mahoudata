@@ -1,0 +1,31 @@
+[{
+    "id": "molienda",
+    "name": "Molienda",
+    "description": "Se muele el grano de la malta para que se puedan extraer sus azúcares fermentables.",
+    "attributes": ["maltoso", "color"]
+  },
+  {
+    "id": "maceración",
+    "name": "Macerazión",
+    "description": "Se mezcla el grano con el agua a cierta temperatura para aportar color y extraer los azúcares fermentables.",
+    "attributes": ["acidez", "afrutado"]
+  },
+  {
+    "id": "hervor",
+    "name": "Hervor",
+    "description": "Se pone a hervir el mosto y se le añaden lúpulos para dar amargor y aroma.",
+    "attributes": ["amargor", "lupulo_afrutado_citrico", "lupulo_floral_herbal"]
+  },
+  {
+    "id": "fermentación",
+    "name": "Fermentación",
+    "description": "A una temperatura más baja, se mezcla el mosto con la levadura para que esta covierta los azúcares en alcohol.",
+    "attributes": ["licoroso", "especias"]
+  },
+  {
+    "id": "carbonatación",
+    "name": "Carbonatación",
+    "description": "...",
+    "attributes": []
+  }
+]

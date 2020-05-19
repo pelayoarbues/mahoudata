@@ -1,9 +1,9 @@
+import os
 from mahoudata.core import *
 from pandas_profiling import ProfileReport
 import pandas as pd
-from flask import Flask,request
+from flask import Flask, request, render_template, url_for, json
 from flask_cors import CORS
-from flask import render_template
 from recommender import *
 
 app = Flask(__name__)
@@ -27,6 +27,17 @@ def beer_recommendations(beer_id):
 @app.route('/simpleViz')
 def simpleViz():
     return render_template('simpleViz.html')
+
+@app.route('/')
+def index():
+    # Load brewing spec (steps and attributes) and pass it to the template
+    # to build the UI 
+    # TODO explore markdown formatting for `description fields`
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, "data", "brewing-spec.json")
+    data = json.load(open(json_url))
+
+    return render_template('index.html', brewing_steps = data)
 
 if __name__=='__main__':
 

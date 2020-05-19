@@ -5,8 +5,7 @@
     "attributes": ["maltoso", "color"]
   },
   {
-    "id": "maceración",
-    "name": "Macerazión",
+    "id": "maceracion",
     "description": "Se mezcla el grano con el agua a cierta temperatura para aportar color y extraer los azúcares fermentables.",
     "attributes": ["acidez", "afrutado"]
   },
@@ -17,13 +16,13 @@
     "attributes": ["amargor", "lupulo_afrutado_citrico", "lupulo_floral_herbal"]
   },
   {
-    "id": "fermentación",
+    "id": "fermentacion",
     "name": "Fermentación",
     "description": "A una temperatura más baja, se mezcla el mosto con la levadura para que esta covierta los azúcares en alcohol.",
     "attributes": ["licoroso", "especias"]
   },
   {
-    "id": "carbonatación",
+    "id": "carbonatacion",
     "name": "Carbonatación",
     "description": "...",
     "attributes": []

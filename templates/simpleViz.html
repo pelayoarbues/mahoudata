@@ -7,18 +7,14 @@
 
 </head>
 <body>
- <div style='width:100%;display:block;'>
+  <div id="beer-info"></div>
   <div id="selector-container"></div>
   <div id="recomend-container"></div>
   <div id="chart"></div>
-  <div id="recom-charts">
-  </div>
- </div>
- 
+  <div id="recom-charts"></div>
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="{{ url_for('static', filename='master.js') }}"></script>
-<script src="{{ url_for('static', filename='radarOk.js') }}"></script>
-
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="{{ url_for('static', filename='master.js') }}"></script>
+  <script src="{{ url_for('static', filename='radarOk.js') }}"></script>
 </body>
 </html>

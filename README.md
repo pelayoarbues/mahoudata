@@ -109,3 +109,12 @@ Prerequisites: Node.js and NPM
 ## UI - Brewing spec
 
 Use `npm run brewing-spec-metadata` to get useful values from the dataset to build the UI. For example: given an attribute, get its max and min values to use them as range values for the attribute control selector in the UI.
+
+## API NOTES
+
+/guess : 
+    method -> POST
+    params -> ref_vector(Vector obtained from user through form. Must keep cats order in roder to calculate distance properly)
+    sample call -> curl -XPOST 'http://localhost:5000/guess' -d '[1,2,3,4,5,1,2,3,4,5]'
+    sample response -> ["0.04", "2.2", "0.3", "3", "1.4", "1", "0.5", "0.3", "", ""]
+

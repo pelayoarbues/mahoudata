@@ -6,6 +6,8 @@ from flask import Flask, request, render_template, url_for, json
 from flask_cors import CORS
 from recommender import *
 
+MATRIX_FILE = './data/dataset-datathon.csv'
+
 app = Flask(__name__)
 CORS(app)
 # TODO just for dev
@@ -38,6 +40,41 @@ def index():
     data = json.load(open(json_url))
 
     return render_template('index.html', brewing_steps = data)
+
+@app.route('/guess')
+def guess(ref_vector):
+
+    matrix = [];
+
+    with open(MATRIX_FILE,"r") as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter='\t')
+        line_count = 0
+
+        head = 1
+
+        for row in csv_reader:
+            if head==0:
+                 matrix.append(row)
+            else:
+                 head = 0
+
+
+    min = 10000;
+    selectedId = -1;
+
+    for beer in matrix:
+        dif = 0;
+
+        for value in beer_list:
+            minidif = Math.abs(val-refVector[j]);
+            dif += minidif;
+
+        if(dif<min):
+            min = dif;
+            selectedId = i;
+        
+
+    return matrix[selectedId]
 
 if __name__=='__main__':
 

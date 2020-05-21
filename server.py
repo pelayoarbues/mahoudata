@@ -6,7 +6,12 @@ from flask_cors import CORS
 from flask import render_template
 from recommender import *
 
+import json
+import csv
+
+
 MATRIX_FILE = './data/dataset-datathon.csv'
+NO_VALUE_DISTANCE = 5
 
 app = Flask(__name__)
 CORS(app)
@@ -30,32 +35,36 @@ def beer_recommendations(beer_id):
 def simpleViz():
     return render_template('simpleViz.html')
 
-@app.route('/guess')
-def guess(ref_vector):
+@app.route('/guess',methods=['POST'])
+def guess():
 
-    matrix = [];
+    cats = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
 
-    with open(MATRIX_FILE,"r") as csv_file:
-        csv_reader = csv.reader(csv_file, delimiter='\t')
-        line_count = 0
+    matrix = []
+    ref_vector = request.get_json(force=True)
+    print(ref_vector)
 
-        head = 1
+    input_file = csv.DictReader(open(MATRIX_FILE,"r"))
 
-        for row in csv_reader:
-            if head==0:
-                 matrix.append(row)
-            else:
-                 head = 0
+    for row in input_file:
+        aux = []
+        for cat in cats:
+            aux.append(row[cat])
+
+        matrix.append(aux)
 
 
     min = 10000;
     selectedId = -1;
 
-    for beer in matrix:
+    for i,beer in enumerate(matrix):
         dif = 0;
 
-        for value in beer_list:
-            minidif = Math.abs(val-refVector[j]);
+        for j,value in enumerate(beer):
+            try:
+                minidif = abs(float(value)-ref_vector[j]);
+            except:
+                minidif = NO_VALUE_DISTANCE
             dif += minidif;
 
         if(dif<min):
@@ -63,7 +72,7 @@ def guess(ref_vector):
             selectedId = i;
         
 
-    return matrix[selectedId]
+    return json.dumps(matrix[selectedId])
 
 if __name__=='__main__':
 

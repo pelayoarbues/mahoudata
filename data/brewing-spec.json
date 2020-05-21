@@ -1,85 +1,85 @@
 [{
-    "id": "molienda",
-    "name": "Molienda",
-    "description": "Se muele el grano de la malta para que se puedan extraer sus azúcares fermentables.",
-    "attributes": [{
-      "id": "maltoso",
-      "name": "Maltoso",
-      "max": 3.9,
-      "min": 0.2,
-      "mean": 1.8
-    }, {
-      "id": "color",
-      "name": "Color",
-      "max": 5,
-      "min": 0.3,
-      "mean": 2.5
-    }]
-  },
-  {
-    "id": "maceracion",
-    "name": "Maceración",
-    "description": "Se mezcla el grano con el agua a cierta temperatura para aportar color y extraer los azúcares fermentables.",
-    "attributes": [{
-      "id": "acidez",
-      "name": "Acidez",
-      "max": 4.4,
-      "min": 0.1,
-      "mean": 2
-    }, {
-      "id": "afrutado",
-      "name": "Afrutado",
-      "max": 3.4,
-      "min": 0.1,
-      "mean": 1.7
-    }]
-  },
-  {
-    "id": "hervor",
-    "name": "Hervor",
-    "description": "Se pone a hervir el mosto y se le añaden lúpulos para dar amargor y aroma.",
-    "attributes": [{
-      "id": "lupulo_afrutado_citrico",
-      "name": "Lúpulo afrutado cítrico",
-      "max": 3.5,
-      "min": 0.1,
-      "mean": 1.6
-    }, {
-      "id": "lupulo_floral_herbal",
-      "name": "Lúpulo floral herbal",
-      "max": 2.6,
-      "min": 0.1,
-      "mean": 1.3
-    }, {
-      "id": "amargor",
-      "name": "Amargor",
-      "max": 4.4,
-      "min": 0.8,
-      "mean": 2.5
-    }]
-  },
-  {
-    "id": "fermentacion",
-    "name": "Fermentación",
-    "description": "A una temperatura más baja, se mezcla el mosto con la levadura para que esta covierta los azúcares en alcohol.",
-    "attributes": [{
-      "id": "licoroso",
-      "name": "Licoroso",
-      "max": 3.7,
-      "min": 0.3,
-      "mean": 1.9
-    }, {
-      "id": "especias",
-      "name": "Especias",
-      "max": 3.7,
-      "min": 0.3,
-      "mean": 1.7
-    }]
-  },
-  {
-    "id": "carbonatacion",
-    "name": "Carbonatación",
-    "description": "...",
-    "attributes": []
-  }
+  "id": "malteado",
+  "name": "Malteado",
+  "description": "Durante el malteado los granos de cereal, normalmente de cebada, atraviesan un proceso de germinación controlada con el fin de activar las enzimas presentes en el grano, que luego serán necesarias durante la maceración. Dependiendo del grado de tostado obtenido durante el malteo, conseguiremos maltas más claras u oscuras, que aportarán el color de la cerveza.",
+  "attributes": [{
+    "id": "maltoso",
+    "name": "Maltoso",
+    "max": 3.9,
+    "min": 0.2,
+    "mean": 1.8
+  }, {
+    "id": "color",
+    "name": "Color",
+    "max": 5,
+    "min": 0.3,
+    "mean": 2.5
+  }]
+},
+{
+  "id": "maceracion",
+  "name": "Molienda y Maceración",
+  "description": "Una vez hemos molido el grano de cereal, es hora de mezclarlo con agua para preparar el mosto cervecero.  El agua es el ingrediente mayoritario representando entre el 85%-90% del contenido de la cerveza final. Para el proceso de macerado, la malta se mezcla con el agua a diferentes tiempos y temperaturas, produciendo las transformaciones necesarias para convertir el almidón en azúcares fermentables.",
+  "attributes": [{
+    "id": "acidez",
+    "name": "Acidez",
+    "max": 4.4,
+    "min": 0.1,
+    "mean": 2
+  }, {
+    "id": "afrutado",
+    "name": "Afrutado",
+    "max": 3.4,
+    "min": 0.1,
+    "mean": 1.7
+  }]
+},
+{
+  "id": "coccion",
+  "name": "Cocción",
+  "description": "Tras la maceración, se separa el mosto líquido de los restos de malta. Para ello filtramos el mosto a través de una cuba filtro o de un filtro prensa. El mosto se lleva a ebullición con el objetivo de aportar amargor y aroma presentes en el lúpulo. Además, durante esta etapa se esteriliza el mosto, se coagulan proteínas y se evaporan aromas indeseables. Normalmente este proceso dura en torno a una hora o más, dependiendo del estilo de cerveza que se esté elaborando. Posteriormente el mosto final es sometido a una especie de centrifugado",
+  "attributes": [{
+    "id": "lupulo_afrutado_citrico",
+    "name": "Lúpulo afrutado cítrico",
+    "max": 3.5,
+    "min": 0.1,
+    "mean": 1.6
+  }, {
+    "id": "lupulo_floral_herbal",
+    "name": "Lúpulo floral herbal",
+    "max": 2.6,
+    "min": 0.1,
+    "mean": 1.3
+  }, {
+    "id": "amargor",
+    "name": "Amargor",
+    "max": 4.4,
+    "min": 0.8,
+    "mean": 2.5
+  }]
+},
+{
+  "id": "fermentacion",
+  "name": "Fermentación",
+  "description": "Finalmente llegó el momento de enfriar y airear el mosto para luego sembrar la levadura. Durante la fermentación se transforman los azúcares fermentables en alcohol y CO2, al tiempo que se generan una gran variedad de compuestos, muchos de los cuales contribuyen a darle los aromas característicos tan populares de la cerveza. Usualmente en el proceso cervecero se utilizan dos grandes familias de levaduras: lager y ale. Este proceso se desarrolla en tanques de fermentación que en ocasiones son conocidos como fermentadores.",
+  "attributes": [{
+    "id": "licoroso",
+    "name": "Licoroso",
+    "max": 3.7,
+    "min": 0.3,
+    "mean": 1.9
+  }, {
+    "id": "especias",
+    "name": "Especias",
+    "max": 3.7,
+    "min": 0.3,
+    "mean": 1.7
+  }]
+},
+{
+  "id": "maduracion",
+  "name": "Maduración y Envasado",
+  "description": "El líquido resultante requiere de un período de maduración, donde la cerveza es sometida a bajas temperaturas para que el sabor y los aromas logrados durante el proceso se estabilicen y se consiga el justo balance entre los diferentes matices. Generalmente al terminar la maduración la cerveza es sometida a un proceso de filtración para separar pequeñas partículas de levadura y compuestos que aún se encuentran en suspensión. Una vez filtrada se obtiene la cerveza brillante, la cual se envasa en diferentes formatos para su consumo y en muchos casos se pasteuriza para luego poner a disposición de los Cervecistas, que sólo tendrán que preocuparse de abrir, servir y disfrutar.",
+  "attributes": []
+}
 ]

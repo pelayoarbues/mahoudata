@@ -1,3 +1,6 @@
+# UI stuff
+node_modules
+
 *.bak
 .gitattributes
 .last_checked

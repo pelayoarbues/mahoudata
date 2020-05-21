@@ -1,0 +1,26 @@
+{
+  "name": "mahoudata",
+  "version": "1.0.0",
+  "description": "> Library for recommending Mahou-San Miguel beers",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "brewing-spec-metadata": "node tools/get-attributes-metadata"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pelayoarbues/mahoudata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pelayoarbues/mahoudata/issues"
+  },
+  "homepage": "https://github.com/pelayoarbues/mahoudata#readme",
+  "devDependencies": {
+    "csvtojson": "^2.0.10",
+    "lodash": "^4.17.15"
+  }
+}

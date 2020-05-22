@@ -4,22 +4,13 @@
   <meta charset="utf-8">
   <title>Cervecistas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: ui-system, sans-serif; }
-    section {
-      border: 1px solid #888;
-      height: calc(100vw/2);
-      margin: 1rem;
-      padding: 1rem;
-    }
-    label {
-      display: block;
-      border: 1px solid #888;
-      margin: 1rem;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
   {% block content %}{% endblock %}
+
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
+  <script src="{{ url_for('static', filename='radarOk.js') }}"></script>
 </body>
 </html>

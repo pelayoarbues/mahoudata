@@ -46,12 +46,29 @@ def index():
 
     return render_template('index.html', brewing_steps = data)
 
+
+def __translate_obj_param__(obj):
+
+    cats = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
+
+    vector = []
+
+    for cat in cats:
+        vector.append(obj[cat])
+    
+    return vector
+
+
 @app.route('/guess',methods=['POST'])
 def guess():
 
     cats = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
 
+    print(cats)
+
     matrix = []
+    ref_obj = request.get_json(force=True)
+    ref_vector = __translate_obj_param__(ref_obj)
     ref_vector = request.get_json(force=True)
     print(ref_vector)
 
@@ -72,13 +89,18 @@ def guess():
         dif = 0;
 
         for j,value in enumerate(beer):
+            #print("COMPARO %s - %s" % (value,ref_vector[j]))
             try:
-                minidif = abs(float(value)-ref_vector[j]);
-            except:
+                minidif = abs(float(value)-float(ref_vector[j]));
+            except Exception as e:
+                #print("EXCEPT %s" % e)
                 minidif = NO_VALUE_DISTANCE
             dif += minidif;
+            #print("QUEDA %s %s" % (minidif,dif))
 
         if(dif<min):
+            #print("ES MENOR %s %s" % (dif,min))
+            #print("REF %s %s" % (ref_vector,beer))
             min = dif;
             selectedId = i;
         

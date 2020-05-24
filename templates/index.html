@@ -1,6 +1,5 @@
 {% extends 'layout.html' %}
 {% block content %}
-
   {% for step in brewing_steps %}
     <section id="{{ step.id|e }}">
       <h1>{{ step.name|e }}</h1>

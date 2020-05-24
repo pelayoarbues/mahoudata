@@ -99,17 +99,6 @@ RecommenderHelper.get_top_recommendations(recommender_df, beerID=1, topk=6, sort
 
 Improve RecommenderHelper.get_top_recommendations by parsing the dataframe as a dictionarys
 
-# UI
-
-Prerequisites: Node.js and NPM
-
-1. `npm i`
-2. Check `package.json` tasks
-
-## UI - Brewing spec
-
-Use `npm run brewing-spec-metadata` to get useful values from the dataset to build the UI. For example: given an attribute, get its max and min values to use them as range values for the attribute control selector in the UI.
-
 ## API NOTES
 
 /guess : 

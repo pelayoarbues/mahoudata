@@ -1,7 +1,7 @@
 var RadarChart = {
   draw: function(id, d, options){
 
-    console.log("ASASA",id,d,options);
+    //console.log("ASASA",id,d,options);
 
     var cfg = {
      radius: 5,
@@ -116,7 +116,7 @@ var RadarChart = {
       dataValues = [];
       g.selectAll(".nodes")
       .data(y, function(j, i){
-        console.log("SDFDSFDS",j)
+        // console.log("SDFDSFDS",j)
         cfg.maxValue = cfg.maxValues[cfg.fields.indexOf(j.area)]
         
         dataValues.push([

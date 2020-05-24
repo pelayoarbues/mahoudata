@@ -1,11 +1,17 @@
 {% extends 'layout.html' %}
+
 {% block content %}
+  
   {% for step in brewing_steps %}
     <section id="{{ step.id|e }}">
       <h1>{{ step.name|e }}</h1>
       <p>{{ step.description|e }}</p>
 
       {% for attribute in step.attributes %}
+        <div style="width:300px">
+          <canvas id="attribute-{{ attribute.id }}"></canvas>
+        </div>
+        
         <label>
           {{ attribute.name|e }}
           <input name="{{ attribute.id }}" 
@@ -15,13 +21,18 @@
             value="{{ attribute.mean }}"
             step="any" />
         </label>
+
       {% else %}
-        {# last step without attributes is alwauys the las one #}
+        {# last step without attributes is always the las one #}
         <div id="radar"></div>
         <button id="guess">Guess</button>
       {% endfor %}
 
     </section>
   {% endfor %}
+
+  <script>
+    window.brewingSteps = {{ brewing_steps|tojson|safe }}
+  </script>
 
 {% endblock %}

@@ -68,7 +68,42 @@ const logging = () => {
   })
 }
 
+const test = () => {
+  const canvas = document.querySelectorAll('canvas')
+
+  // Expect `brewingSteps` to be in global context
+  const attributes = brewingSteps.map((item) => item.attributes).flat()
+
+  canvas.forEach(item => {
+    // Get the actual attribute id from canvas identifier
+    const attributeId = item.id.replace('attribute-', '')
+    const attribute = attributes.find(item => item.id === attributeId)
+    console.log(attribute)
+
+    // expect Chart to be in global context
+    const chart = new Chart(item.getContext('2d'), {
+      // The type of chart we want to create
+      type: 'line',
+      // The data for our dataset
+      data: {
+        labels: eval(attribute.distribution.values), // :P @see BE
+        datasets: [{
+          label: attribute.name, 
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: eval(attribute.distribution.count)
+        }]
+      },
+
+      // Configuration options go here
+      options: {}
+    })
+  })
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   logging()
   setupGuessHandler()
+
+  test()
 });

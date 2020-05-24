@@ -79,6 +79,10 @@ def get_brewing_spec():
       # https://stackoverflow.com/a/13130357
       series = pandas.Series(filtered[attribute_id])
       hist, bins = np.histogram(series)
+
+      # Gotcha: histogram stuff to_json here, so the consumer will get it as
+      # a string so it will have to "eval" it to use in JS..I couldn't find a 
+      # way to do it better
       attr['distribution'] = {
         'count': pandas.Series(hist).to_json(orient='values'),
         'values': pandas.Series(bins).to_json(orient='values')

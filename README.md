@@ -118,3 +118,4 @@ Test max values request:
 ```
 curl -XPOST 'http://localhost:5000/guess' -d '[{"graduacion":""},{"lupulo_afrutado_citrico":3.5},{"lupulo_floral_herbal":2.6},{"amargor":4.4},{"color":5},{"maltoso":3.9},{"licoroso":3.7},{"afrutado":3.4},{"especias":3.7},{"acidez":4.4}]'
 ```
+

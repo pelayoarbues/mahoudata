@@ -49,12 +49,18 @@ def index():
 
 def __translate_obj_param__(obj):
 
+    '''[{"graduacion":""},{"lupulo_afrutado_citrico":1.6},{"lupulo_floral_herbal":1.3},{"amargor":2.5},{"color":0.3},{"maltoso":0.2},{"licoroso":1.9},{"afrutado":1.7},{"especias":1.7},{"acidez":2}]'''
     cats = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
 
     vector = []
 
     for cat in cats:
-        vector.append(obj[cat])
+        for subunit in obj:
+            if cat in subunit:
+                vector.append(subunit[cat])    
+
+    #for cat in cats:
+    #    vector.append(obj[cat])
     
     return vector
 

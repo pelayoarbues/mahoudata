@@ -13,15 +13,15 @@ const server_spec = [
 ]
 
 const guess = (attributes) => {
-  // Attributes is an object of key (name of the attribute) and value, but 
-  // server only accepts an array of values in a particular order. Besides 
-  // some attributes may be missing (i.e. "graduacion").
+  // Server needs all the attributes existing in the dataset, to be present 
+  // in the request, but some of them  may be missing in user selection 
+  // (i.e. "graduacion"), so we have to complete the payload before sending it
   const body = []
   server_spec.forEach(key => {
-    const attributeValue = attributes[key] || ''
-    body.push(attributeValue)
+    body.push({
+      [key]: attributes[key] || ''
+    })
   })
-  
   console.log('Request recommendation for', body)
   
   fetch('/guess', {
@@ -54,7 +54,7 @@ const setupGuessHandler = () => {
   button.addEventListener('click', () => {
     const inputs = document.querySelectorAll('input')
     const attributes = {}
-    inputs.forEach(input => attributes[input.name] = input.value)
+    inputs.forEach(input => attributes[input.name] = parseFloat(input.value))
     guess(attributes)
   })
 }

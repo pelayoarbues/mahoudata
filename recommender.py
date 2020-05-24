@@ -1,5 +1,10 @@
 from mahoudata.core import *
+import os
 import pandas
+import json
+import numpy as np
+
+SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 # Load dataset
 # TODO not sure about python scope, but this works: it makes dataset available
@@ -43,3 +48,40 @@ def get_beers(beer_id = None):
     result = dataset.iloc[[beer_id]].to_json()
   
   return result
+
+def get_brewing_spec():
+  # Load brewing spec (steps and attributes)
+  brewing_steps = json.load(open(os.path.join(SITE_ROOT, "data", "brewing-spec.json")))
+  
+  # test-code to get a sense of the dataset
+  # print(dataset.describe())
+
+  # Inspect dataset to add useful values to draw the interface  
+  # Loop to get attributes [{step: { attributes: [] }}]
+  for step in brewing_steps:
+    for attr in step['attributes']:
+      attribute_id = attr['id']
+
+      # Selecting elements from a DataFrame as SQL
+      # 1. Filter null values 
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.notna.html#pandas.Series.notna
+      # TODO cumbersome, I'm sure there's a more straight forward way to do this
+      filtered = dataset[dataset[attribute_id].notna()]
+
+      # 2. Get max and min values and stash them to the json
+      attr['max'] = filtered[attribute_id].max()      
+      attr['min'] = filtered[attribute_id].min()
+      attr['mean'] = round(filtered[attribute_id].mean(), 2)
+
+      # 3. Get histogram for the current attribute
+      # TODO I don't know what the fuck I'm doing but it works: 
+      # pandas, numpy, ndarray to json... etc
+      # https://stackoverflow.com/a/13130357
+      series = pandas.Series(filtered[attribute_id])
+      hist, bins = np.histogram(series)
+      attr['distribution'] = {
+        'count': pandas.Series(hist).to_json(orient='values'),
+        'values': pandas.Series(bins).to_json(orient='values')
+      }
+
+  return brewing_steps

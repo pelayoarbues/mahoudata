@@ -37,14 +37,7 @@ def simpleViz():
 
 @app.route('/')
 def index():
-    # Load brewing spec (steps and attributes) and pass it to the template
-    # to build the UI 
-    # TODO explore markdown formatting for `description fields`
-    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url = os.path.join(SITE_ROOT, "data", "brewing-spec.json")
-    data = json.load(open(json_url))
-
-    return render_template('index.html', brewing_steps = data)
+    return render_template('index.html', brewing_steps = get_brewing_spec())
 
 
 def __translate_obj_param__(obj):

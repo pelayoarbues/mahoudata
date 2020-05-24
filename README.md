@@ -118,3 +118,14 @@ Use `npm run brewing-spec-metadata` to get useful values from the dataset to bui
     sample call -> curl -XPOST 'http://localhost:5000/guess' -d '[1,2,3,4,5,1,2,3,4,5]'
     sample response -> ["0.04", "2.2", "0.3", "3", "1.4", "1", "0.5", "0.3", "", ""]
 
+Test minimum values request:
+
+```
+curl -XPOST 'http://localhost:5000/guess' -d '[{"graduacion":""},{"lupulo_afrutado_citrico":0.1},{"lupulo_floral_herbal":0.1},{"amargor":0.8},{"color":0.3},{"maltoso":0.2},{"licoroso":0.3},{"afrutado":0.1},{"especias":0.3},{"acidez":0.1}]'
+```
+
+Test max values request:
+
+```
+curl -XPOST 'http://localhost:5000/guess' -d '[{"graduacion":""},{"lupulo_afrutado_citrico":3.5},{"lupulo_floral_herbal":2.6},{"amargor":4.4},{"color":5},{"maltoso":3.9},{"licoroso":3.7},{"afrutado":3.4},{"especias":3.7},{"acidez":4.4}]'
+```

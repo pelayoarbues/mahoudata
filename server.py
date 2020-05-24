@@ -75,7 +75,6 @@ def guess():
     matrix = []
     ref_obj = request.get_json(force=True)
     ref_vector = __translate_obj_param__(ref_obj)
-    ref_vector = request.get_json(force=True)
     print(ref_vector)
 
     input_file = csv.DictReader(open(MATRIX_FILE,"r"))

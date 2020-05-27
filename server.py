@@ -12,6 +12,7 @@ import csv
 
 MATRIX_FILE = './data/dataset-datathon.csv'
 NO_VALUE_DISTANCE = 5
+self = {}
 
 app = Flask(__name__)
 CORS(app)
@@ -65,25 +66,14 @@ def guess():
 
     print(cats)
 
-    matrix = []
     ref_obj = request.get_json(force=True)
     ref_vector = __translate_obj_param__(ref_obj)
     print(ref_vector)
 
-    input_file = csv.DictReader(open(MATRIX_FILE,"r"))
-
-    for row in input_file:
-        aux = []
-        for cat in cats:
-            aux.append(row[cat])
-
-        matrix.append(aux)
-
-
     min = 10000;
     selectedId = -1;
 
-    for i,beer in enumerate(matrix):
+    for i,beer in enumerate(self.matrix):
         dif = 0;
 
         for j,value in enumerate(beer):
@@ -103,8 +93,19 @@ def guess():
             selectedId = i;
         
 
-    return json.dumps(matrix[selectedId])
+    return json.dumps(selectedId)
 
 if __name__=='__main__':
+
+    input_file = csv.DictReader(open(MATRIX_FILE,"r"))
+
+    self.matrix = []
+
+    for row in input_file:
+        aux = []
+        for cat in cats:
+            aux.append(row[cat])
+
+        self.matrix.append(aux)
 
     app.run(debug=True)

@@ -11,8 +11,10 @@ import csv
 
 
 MATRIX_FILE = './data/dataset-datathon.csv'
+NAMES_FILE = './data/fakeNames.csv'
 NO_VALUE_DISTANCE = 5
 self = {}
+self['cats'] = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
 
 app = Flask(__name__)
 CORS(app)
@@ -48,23 +50,17 @@ def __translate_obj_param__(obj):
 
     vector = []
 
-    for cat in cats:
+    for cat in self['cats']:
         for subunit in obj:
             if cat in subunit:
                 vector.append(subunit[cat])    
 
-    #for cat in cats:
-    #    vector.append(obj[cat])
-    
     return vector
 
 
 @app.route('/guess',methods=['POST'])
 def guess():
 
-    cats = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
-
-    print(cats)
 
     ref_obj = request.get_json(force=True)
     ref_vector = __translate_obj_param__(ref_obj)
@@ -73,7 +69,7 @@ def guess():
     min = 10000;
     selectedId = -1;
 
-    for i,beer in enumerate(self.matrix):
+    for i,beer in enumerate(self['matrix']):
         dif = 0;
 
         for j,value in enumerate(beer):
@@ -99,13 +95,21 @@ if __name__=='__main__':
 
     input_file = csv.DictReader(open(MATRIX_FILE,"r"))
 
-    self.matrix = []
+    self['matrix'] = []
 
     for row in input_file:
         aux = []
-        for cat in cats:
+        for cat in self['cats']:
             aux.append(row[cat])
 
-        self.matrix.append(aux)
+        self['matrix'].append(aux)
+
+    input_file_names = csv.DictReader(open(NAMES_FILE,"r"))
+
+    self['names'] = []
+
+    for row in input_file:
+        self['names'].append(row.strip())
+
 
     app.run(debug=True)

@@ -10,11 +10,11 @@ import json
 import csv
 
 
-MATRIX_FILE = './data/dataset-datathon.csv'
-NAMES_FILE = './data/fakeNames.csv'
-NO_VALUE_DISTANCE = 5
 self = {}
 self['cats'] = ['graduacion','lupulo_afrutado_citrico','lupulo_floral_herbal','amargor','color','maltoso','licoroso','afrutado','especias','acidez']
+self['MATRIX_FILE'] = './data/dataset-datathon.csv'
+self['NAMES_FILE'] = './data/fakeNames.csv'
+self['NO_VALUE_DISTANCE'] = 5
 
 app = Flask(__name__)
 CORS(app)
@@ -78,7 +78,7 @@ def guess():
                 minidif = abs(float(value)-float(ref_vector[j]));
             except Exception as e:
                 #print("EXCEPT %s" % e)
-                minidif = NO_VALUE_DISTANCE
+                minidif = self['NO_VALUE_DISTANCE']
             dif += minidif;
             #print("QUEDA %s %s" % (minidif,dif))
 
@@ -93,7 +93,7 @@ def guess():
 
 if __name__=='__main__':
 
-    input_file = csv.DictReader(open(MATRIX_FILE,"r"))
+    input_file = csv.DictReader(open(self['MATRIX_FILE'],"r"))
 
     self['matrix'] = []
 
@@ -104,12 +104,11 @@ if __name__=='__main__':
 
         self['matrix'].append(aux)
 
-    input_file_names = csv.DictReader(open(NAMES_FILE,"r"))
+    input_file_names = csv.DictReader(open(self['NAMES_FILE'],"r"))
 
     self['names'] = []
 
     for row in input_file:
         self['names'].append(row.strip())
-
 
     app.run(debug=True)

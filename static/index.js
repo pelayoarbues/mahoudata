@@ -1,4 +1,3 @@
-
 const server_spec = [
   'graduacion',
   'lupulo_afrutado_citrico',
@@ -23,16 +22,16 @@ const guess = (attributes) => {
     })
   })
   console.log('Request recommendation for', body)
-  
+
   fetch('/guess', {
-    method: 'POST',
-    body: JSON.stringify(body)
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Got response', data)
-    drawRadar(data)
-  })
+      method: 'POST',
+      body: JSON.stringify(body)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Got response', data)
+      drawRadar(data)
+    })
 }
 
 const drawRadar = (data) => {
@@ -68,7 +67,7 @@ const logging = () => {
   })
 }
 
-const test = () => {
+const drawCharts = () => {
   const canvas = document.querySelectorAll('canvas')
 
   // Expect `brewingSteps` to be in global context
@@ -78,32 +77,45 @@ const test = () => {
     // Get the actual attribute id from canvas identifier
     const attributeId = item.id.replace('attribute-', '')
     const attribute = attributes.find(item => item.id === attributeId)
-    console.log(attribute)
 
     // expect Chart to be in global context
     const chart = new Chart(item.getContext('2d'), {
-      // The type of chart we want to create
       type: 'line',
-      // The data for our dataset
       data: {
         labels: eval(attribute.distribution.values), // :P @see BE
         datasets: [{
-          label: attribute.name, 
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          label: attribute.name,
+          backgroundColor: '#F79256',
+          borderColor: '#FBD1A2',
           data: eval(attribute.distribution.count)
         }]
       },
-
-      // Configuration options go here
-      options: {}
+      options: {
+        legend: {
+          display: false
+        },
+        responsive: false,
+        tooltips: {
+          intersect: false
+        },
+        scales: {
+          yAxes: [{
+            gridLines: { display: false },
+            ticks: { beginAtZero: true }
+          }],
+          xAxes: [{ 
+            gridLines: { display: false },
+            ticks: { display: false 
+          }}]
+        }
+      }
     })
+    
   })
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   logging()
   setupGuessHandler()
-
-  test()
+  drawCharts()
 });

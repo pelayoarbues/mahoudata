@@ -1,15 +1,25 @@
 body { font-family: ui-system, sans-serif; }
 
 /* /index rules */
+.steps {
+  display: flex;
+}
+
 section {
   border: 1px solid #888;
   margin: 1rem;
   padding: 1rem;
 }
-label {
-  display: block;
-  border: 1px solid #888;
-  margin: 1rem;
+
+.attribute__control {
+  width: 300px;
+  box-sizing: border-box;
+}
+
+.attribute__control input {
+  /* yAxis offset for chart above the input control */
+  width: calc(100% - 36px);
+  margin-left: 36px;
 }
 
 /* simpleViz rules */

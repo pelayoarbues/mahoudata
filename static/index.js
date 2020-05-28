@@ -33,21 +33,30 @@ const guess = (attributes) => {
       body: JSON.stringify(body)
     })
     .then(response => response.json())
-    .then(data => {
-      console.log('Got response', data)
-      drawRadar(data)
+    .then(id => {
+      fetch(`/beers/${id}`)
+        .then(response => response.json())
+        .then(data => {
+          // Let's log beer data and display the radar
+          console.log('BEER', id, data.descripcion[id], data.maridaje[id])
+          
+          drawRadar(id, data)        
+        })      
     })
 }
 
-const drawRadar = (data) => {
-  // Ok, now radar chart expects an array of objects... just the opposite,
-  // so we have to rebuild the response
+const drawRadar = (id, data) => {
+  // Ok, now radar chart expects an array of objects,
+  // so we have to rebuild the response. Besides, data spec is weird,
+  // each attribute is an Object with the beer ID as key, that's why we
+  // need to pass it here as argument...
   const baseData = []
   server_spec.forEach((key, index) => {
+    const value = data[key][id]
     baseData.push({
       group: 'Base',
       area: key,
-      value: data[index] // this won't work if server response values aren't sorted
+      value: value
     })
   })
   RadarChart.draw('#radar', [baseData], {})

@@ -17,10 +17,63 @@ section {
 }
 
 .attribute__control input {
+  /* TODO replaced by rangeSlider widget */
   /* yAxis offset for chart above the input control */
   width: calc(100% - 36px);
   margin-left: 36px;
 }
+
+/*
+  Range Slider rules:
+
+  - Override rules from https://github.com/Stryzhevskyi/rangeSlider/blob/master/src/range-slider.css 
+  - Magic numbers to suit proto
+*/
+.rangeSlider {
+  width: calc(100% - 36px);
+  margin: 8px 0 0 36px;
+  height: 8px;
+}
+
+.rangeSlider__handle {
+  width: 16px;
+  height: 16px;
+}
+
+.rangeSlider__handle__horizontal {
+  top: -4px;
+}
+
+.rangeSlider__handle:after {
+  width: 8px;
+  height: 8px;
+}
+
+.rangeSlider,
+.rangeSlider__fill {
+  background-color: #eee;
+}
+
+.rangeSlider__handle .tooltip {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px;
+  display: block;
+  line-height: 1em;
+  height: 160px;
+}
+
+.rangeSlider__handle .tooltip:after {
+  content: '';
+  display: block;
+  background-color:#F7925666;
+  height: 100%;
+  width: 4px;
+  margin: 0 auto;
+}
+
 
 /* simpleViz rules */
 #chart{

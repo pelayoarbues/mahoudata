@@ -4,15 +4,19 @@
   <meta charset="utf-8">
   <title>Cervecistas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/rangeslider-pure@latest/dist/range-slider.css"/>
   <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
 </head>
 <body>
   {% block content %}{% endblock %}
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-  <script src="{{ url_for('static', filename='radarOk.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/rangeslider-pure@latest/dist/range-slider.js"></script>
   
+  <script src="{{ url_for('static', filename='radarOk.js') }}"></script>  
   <script src="{{ url_for('static', filename='index.js') }}"></script>  
 </body>
 </html>

@@ -1,3 +1,8 @@
+// Stuff expected to be present in global context:
+// - rangeSlider: https://github.com/Stryzhevskyi/rangeSlider
+// - brewingSpets: custom JSON
+// - Chart: https://www.chartjs.org/
+
 const server_spec = [
   'graduacion',
   'lupulo_afrutado_citrico',
@@ -48,6 +53,29 @@ const drawRadar = (data) => {
   RadarChart.draw('#radar', [baseData], {})
 }
 
+const setupRangeSliders = () => {
+  document.querySelectorAll('input[type=range]').forEach(function(input) {
+    rangeSlider.create(input, {
+      step: 0.1,
+      onSlide: function(value) {
+        // Update tooltip: cumbersome DOM traversing and `input` closure
+        input.rangeSlider.handle.childNodes[0].textContent = value
+      }
+    })
+    // Weird errors when setting up value at initialization...
+    input.rangeSlider.update({
+      value: input.attributes.value.value
+    })
+
+    // Create tooltip for slider
+    const handleEl = input.rangeSlider.handle
+    const tooltip = document.createElement('div')
+    tooltip.classList.add('tooltip')
+    handleEl.appendChild(tooltip)
+    tooltip.textContent = input.rangeSlider.value
+  })
+}
+
 const setupGuessHandler = () => {
   const button = document.querySelector('#guess')
   button.addEventListener('click', () => {
@@ -69,16 +97,12 @@ const logging = () => {
 
 const drawCharts = () => {
   const canvas = document.querySelectorAll('canvas')
-
-  // Expect `brewingSteps` to be in global context
   const attributes = brewingSteps.map((item) => item.attributes).flat()
 
   canvas.forEach(item => {
     // Get the actual attribute id from canvas identifier
     const attributeId = item.id.replace('attribute-', '')
     const attribute = attributes.find(item => item.id === attributeId)
-
-    // expect Chart to be in global context
     const chart = new Chart(item.getContext('2d'), {
       type: 'line',
       data: {
@@ -116,6 +140,7 @@ const drawCharts = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   logging()
+  setupRangeSliders()
   setupGuessHandler()
   drawCharts()
 });

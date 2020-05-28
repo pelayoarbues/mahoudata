@@ -1,9 +1,9 @@
 body { font-family: ui-system, sans-serif; }
 
-/* /index rules */
+/* index rules */
 .steps {
   display: flex;
-}
+} 
 
 section {
   border: 1px solid #888;

@@ -1,27 +1,13 @@
 // Stuff expected to be present in global context:
 // - rangeSlider: https://github.com/Stryzhevskyi/rangeSlider
-// - brewingSpets: custom JSON
+// - brewingSteps: custom JSON
 // - Chart: https://www.chartjs.org/
 
-const server_spec = [
-  'graduacion',
-  'lupulo_afrutado_citrico',
-  'lupulo_floral_herbal',
-  'amargor',
-  'color',
-  'maltoso',
-  'licoroso',
-  'afrutado',
-  'especias',
-  'acidez'
-]
-
 const guess = (attributes) => {
-  // Server needs all the attributes existing in the dataset, to be present 
-  // in the request, but some of them  may be missing in user selection 
-  // (i.e. "graduacion"), so we have to complete the payload before sending it
+  // Makeup payload body bc server expects an array of objects
+  // TODO make server and client to agree on payload spec
   const body = []
-  server_spec.forEach(key => {
+  getAttributeIds().forEach(key => {
     body.push({
       [key]: attributes[key] || ''
     })
@@ -46,20 +32,42 @@ const guess = (attributes) => {
 }
 
 const drawRadar = (id, data) => {
-  // Ok, now radar chart expects an array of objects,
-  // so we have to rebuild the response. Besides, data spec is weird,
-  // each attribute is an Object with the beer ID as key, that's why we
-  // need to pass it here as argument...
-  const baseData = []
-  server_spec.forEach((key, index) => {
-    const value = data[key][id]
-    baseData.push({
-      group: 'Base',
-      area: key,
-      value: value
-    })
+  // Labels and radar data must be in sync      
+  const labels = getAttributes().map(attr => attr.name)
+  
+  // Server response is a little bit weird, each attribute is an Object 
+  // with the beer ID as key, that's why we need to pass it here as argument
+  // and re-map the data before drawing the chart
+  const radarData = getAttributeIds().map((key) => {
+    return data[key][id] // beware id == beer, key == attribute
   })
-  RadarChart.draw('#radar', [baseData], {})
+console.log(Chart.defaults.radar)
+  const canvas = document.querySelector('canvas#recommendation-radar')
+  var myRadarChart = new Chart(canvas.getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: labels,
+      datasets: [{
+        backgroundColor: '#F79256',
+        borderColor: '#FBD1A2',
+        data: radarData
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      },
+      scales: {
+        scaleLabel: {
+          display: false
+        },
+        gridLines: {
+          display: false
+        }
+      },
+    }
+  });
+
 }
 
 const setupRangeSliders = () => {
@@ -104,8 +112,8 @@ const logging = () => {
   })
 }
 
-const drawCharts = () => {
-  const canvas = document.querySelectorAll('canvas')
+const drawHistograms = () => {
+  const canvas = document.querySelectorAll('.attribute__control canvas')
   const attributes = brewingSteps.map((item) => item.attributes).flat()
 
   canvas.forEach(item => {
@@ -165,5 +173,17 @@ document.addEventListener("DOMContentLoaded", () => {
   logging()
   setupRangeSliders()
   setupGuessHandler()
-  drawCharts()
+  drawHistograms()
 });
+
+// Utility method to work with brewing steps spec, it flattens 
+// all attributes to an array
+const getAttributes = () => {
+  return [].concat.apply([], brewingSteps.map((step) => step.attributes))
+}
+
+// Utility method to get attribute keys as an array
+const getAttributeIds = () => {
+  return getAttributes().map(attr => attr.id)
+}
+

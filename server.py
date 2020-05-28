@@ -74,11 +74,12 @@ def guess():
 
         for j,value in enumerate(beer):
             #print("COMPARO %s - %s" % (value,ref_vector[j]))
-            try:
+            if float(value)!=-1 and isinstance(ref_vector[j], float):
                 minidif = abs(float(value)-float(ref_vector[j]));
-            except Exception as e:
+            else:
                 #print("EXCEPT %s" % e)
                 minidif = self['NO_VALUE_DISTANCE']
+
             dif += minidif;
             #print("QUEDA %s %s" % (minidif,dif))
 
@@ -88,6 +89,10 @@ def guess():
             min = dif;
             selectedId = i;
         
+
+    print("SELECTED %s" % selectedId)
+    print("VALUES %s" % (self['matrix'][selectedId]))
+    print("OTROS  %s" % (ref_vector))
 
     return json.dumps(selectedId)
 
@@ -100,7 +105,13 @@ if __name__=='__main__':
     for row in input_file:
         aux = []
         for cat in self['cats']:
-            aux.append(row[cat])
+            try:
+                value = float(row[cat])
+            except Exception as e:
+                value = -1.0
+
+            aux.append(value)
+            #aux.append(row[cat])
 
         self['matrix'].append(aux)
 

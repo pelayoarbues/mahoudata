@@ -129,7 +129,21 @@ const drawCharts = () => {
         },
         responsive: false,
         tooltips: {
-          intersect: false
+          intersect: false,
+          custom: function(tooltip) {
+            if (!tooltip) {
+              return
+            }
+            // disable displaying the color box
+            tooltip.displayColors = false
+          },
+          callbacks: {
+            label: function(tooltipItem, data) {
+              const label = data.datasets[tooltipItem.datasetIndex].label || '';
+              return `${tooltipItem.yLabel} cervezas con ${label}: ${tooltipItem.xLabel}`
+            },
+            title: () => {} // remove top title
+          },          
         },
         scales: {
           yAxes: [{

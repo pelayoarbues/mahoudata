@@ -47,6 +47,9 @@
   }, {
     "id": "especias",
     "name": "Especias"
+  }, {
+    "id": "graduacion",
+    "name": "Graduación"
   }]
 },
 {

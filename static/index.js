@@ -22,11 +22,10 @@ const guess = (attributes) => {
     .then(id => {
       fetch(`/beers/${id}`)
         .then(response => response.json())
-        .then(data => {
-          // Let's log beer data and display the radar
-          console.log('BEER', id, data.descripcion[id], data.maridaje[id])
-          
-          drawRadar(id, data)        
+        .then(data => {     
+          displayBeerInfo(id, data)
+          drawRadar(id, data)  
+          // TODO get recommendations for beer ID      
         })      
     })
 }
@@ -41,7 +40,7 @@ const drawRadar = (id, data) => {
   const radarData = getAttributeIds().map((key) => {
     return data[key][id] // beware id == beer, key == attribute
   })
-console.log(Chart.defaults.radar)
+
   const canvas = document.querySelector('canvas#recommendation-radar')
   var myRadarChart = new Chart(canvas.getContext('2d'), {
     type: 'radar',
@@ -68,6 +67,13 @@ console.log(Chart.defaults.radar)
     }
   });
 
+}
+
+const displayBeerInfo = (id, data) => {
+  const title = document.getElementById('recommendation-title')
+  const description = document.getElementById('recommendation-description')
+  title.innerHTML = data.name
+  description.innerHTML = data.descripcion[id]
 }
 
 const setupRangeSliders = () => {

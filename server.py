@@ -25,15 +25,17 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 def beers():
     m = json.loads(get_beers())
     for i,b in enumerate(m['data']):
-        b['Name'] = self['names'][i]
+        b['name'] = self['names'][i]
 
     return m
-
 
 # https://flask.palletsprojects.com/en/1.1.x/api/#url-route-registrations
 @app.route('/beers/<int:beer_id>')
 def beer(beer_id):
-    return get_beers(beer_id)
+    beer = json.loads(get_beers(beer_id))
+    # complete beer data with fake name
+    beer['name'] = self['names'][beer_id]
+    return beer
 
 @app.route('/beers/<int:beer_id>/recommendations')
 def beer_recommendations(beer_id):

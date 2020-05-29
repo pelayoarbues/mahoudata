@@ -23,8 +23,11 @@
           </div>
           
         {% else %}
-          {# last step without attributes is always the las one #}
-          <div id="radar"></div>
+          {# last step without attributes is always the las one 
+            - d3 radar impl container <div id="radar"></div>
+          #}          
+          <h1 id="recommendation-title"></h1>
+          <p id="recommendation-description"></p>
           <canvas id="recommendation-radar"></canvas>
           <button id="guess">Guess</button>
         {% endfor %}

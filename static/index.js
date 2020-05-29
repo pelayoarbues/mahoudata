@@ -14,23 +14,39 @@ const guess = (attributes) => {
   })
   console.log('Request recommendation for', body)
 
+  // TODO try async/await
   fetch('/guess', {
       method: 'POST',
       body: JSON.stringify(body)
     })
     .then(response => response.json())
     .then(id => {
+      // Get beer info (the selected one, via attribues)
       fetch(`/beers/${id}`)
         .then(response => response.json())
         .then(data => {     
-          displayBeerInfo(id, data)
-          drawRadar(id, data)  
-          // TODO get recommendations for beer ID      
-        })      
+          displaySelectionInfo(id, data)
+          drawRadar('#selection__radar', id, data)
+        })
+      // Get recommendations
+      fetch(`/beers/${id}/recommendations`)
+        .then(response => response.json())     
+        .then(data => {
+          // Get just 3 beers from the recommendation
+          Object.values(data.beerID).slice(0, 3).forEach(id => getRecommendation(id))
+        })
     })
 }
 
-const drawRadar = (id, data) => {
+const getRecommendation = (id) => {
+  fetch(`/beers/${id}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.name)
+  })
+}
+
+const drawRadar = (domId, id, data) => {
   // Labels and radar data must be in sync      
   const labels = getAttributes().map(attr => attr.name)
   
@@ -41,7 +57,7 @@ const drawRadar = (id, data) => {
     return data[key][id] // beware id == beer, key == attribute
   })
 
-  const canvas = document.querySelector('canvas#recommendation-radar')
+  const canvas = document.querySelector(domId)
   var myRadarChart = new Chart(canvas.getContext('2d'), {
     type: 'radar',
     data: {
@@ -69,9 +85,9 @@ const drawRadar = (id, data) => {
 
 }
 
-const displayBeerInfo = (id, data) => {
-  const title = document.getElementById('recommendation-title')
-  const description = document.getElementById('recommendation-description')
+const displaySelectionInfo = (id, data) => {
+  const title = document.getElementById('selection__title')
+  const description = document.getElementById('selection__description')
   title.innerHTML = data.name
   description.innerHTML = data.descripcion[id]
 }

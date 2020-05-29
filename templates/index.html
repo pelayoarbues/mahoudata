@@ -25,10 +25,17 @@
         {% else %}
           {# last step without attributes is always the las one 
             - d3 radar impl container <div id="radar"></div>
-          #}          
-          <h1 id="recommendation-title"></h1>
-          <p id="recommendation-description"></p>
-          <canvas id="recommendation-radar"></canvas>
+          #}
+          <div id="selection">
+            <p>Tu selección:</p>
+            <h1 id="selection__title"></h1>
+            <p id="selection__description"></p>
+            <canvas id="selection__radar"></canvas>          
+          </div>
+          <div id="recommendation">
+            <p>Las recomendación para Cervecistas:</p>
+            {# TODO containers for recommendations #} 
+          </div>
           <button id="guess">Guess</button>
         {% endfor %}
 

@@ -25,28 +25,36 @@ const guess = (attributes) => {
       fetch(`/beers/${id}`)
         .then(response => response.json())
         .then(data => {     
-          displaySelectionInfo(id, data)
-          drawRadar('#selection__radar', id, data)
+          displayBeerInfo('selection', id, data)
+          // display result: it may show a flash effect until recommendations
+          // are filled...
+          document.getElementById('result').classList.remove('is-hidden')
         })
-      // Get recommendations
+      // Get recommendations and display data
       fetch(`/beers/${id}/recommendations`)
         .then(response => response.json())     
         .then(data => {
           // Get just 3 beers from the recommendation
-          Object.values(data.beerID).slice(0, 3).forEach(id => getRecommendation(id))
+          Object.values(data.beerID).slice(0, 3).forEach((id, index) => {
+            getRecommendation(id, index)
+          })          
         })
     })
 }
 
-const getRecommendation = (id) => {
-  fetch(`/beers/${id}`)
+const getRecommendation = (beerId, index) => {
+  fetch(`/beers/${beerId}`)
   .then(response => response.json())
   .then(data => {
-    console.log(data.name)
+    displayBeerInfo(`recommendation-${index}`, beerId, data)
+    drawRadar(`recommendation-${index}`, beerId, data)
   })
 }
 
-const drawRadar = (domId, id, data) => {
+const drawRadar = (parentDomId, beerId, data) => {
+  const parent = document.getElementById(parentDomId)
+  const canvas = parent.querySelector('.radar')
+
   // Labels and radar data must be in sync      
   const labels = getAttributes().map(attr => attr.name)
   
@@ -54,10 +62,9 @@ const drawRadar = (domId, id, data) => {
   // with the beer ID as key, that's why we need to pass it here as argument
   // and re-map the data before drawing the chart
   const radarData = getAttributeIds().map((key) => {
-    return data[key][id] // beware id == beer, key == attribute
+    return data[key][beerId] // beware id == beer, key == attribute
   })
 
-  const canvas = document.querySelector(domId)
   var myRadarChart = new Chart(canvas.getContext('2d'), {
     type: 'radar',
     data: {
@@ -82,14 +89,14 @@ const drawRadar = (domId, id, data) => {
       },
     }
   });
-
 }
 
-const displaySelectionInfo = (id, data) => {
-  const title = document.getElementById('selection__title')
-  const description = document.getElementById('selection__description')
+const displayBeerInfo = (parentDomId, beerId, data) => {
+  const parent = document.getElementById(parentDomId)
+  const title = parent.querySelector('.title')
+  const description = parent.querySelector('.description')
   title.innerHTML = data.name
-  description.innerHTML = data.descripcion[id]
+  description.innerHTML = data.descripcion[beerId]
 }
 
 const setupRangeSliders = () => {
@@ -193,9 +200,35 @@ const drawHistograms = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   logging()
-  setupRangeSliders()
-  setupGuessHandler()
-  drawHistograms()
+
+  var mySwiper = new Swiper ('.swiper-container', {
+    // Optional parameters
+    cssMode: true,
+    preventClicks: false,
+
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+
+    // Custom pagination, TODO add brewing step names instead of indexes
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: (index, className) => {
+        return `<span class="${className}">${index +1}</span>`
+      }
+    },
+
+    on: {
+      init: function() {
+        setupRangeSliders()
+        setupGuessHandler()
+        drawHistograms()      
+      }
+    }
+  })
 });
 
 // Utility method to work with brewing steps spec, it flattens 

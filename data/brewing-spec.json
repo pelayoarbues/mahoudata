@@ -24,7 +24,7 @@
 },
 {
   "id": "coccion",
-  "name": "Cocción",
+  "name": "Filtración y cocción",
   "description": "Tras la maceración, se separa el mosto líquido de los restos de malta. Para ello filtramos el mosto a través de una cuba filtro o de un filtro prensa. El mosto se lleva a ebullición con el objetivo de aportar amargor y aroma presentes en el lúpulo. Además, durante esta etapa se esteriliza el mosto, se coagulan proteínas y se evaporan aromas indeseables. Normalmente este proceso dura en torno a una hora o más, dependiendo del estilo de cerveza que se esté elaborando. Posteriormente el mosto final es sometido a una especie de centrifugado",
   "attributes": [{
     "id": "lupulo_afrutado_citrico",

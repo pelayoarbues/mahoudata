@@ -1,47 +1,87 @@
 {% extends 'layout.html' %}
-
 {% block content %}
-  <div class="steps">
-    {% for step in brewing_steps %}
-      <section id="{{ step.id|e }}">
-        <h1>{{ step.name|e }}</h1>
-        <p>{{ step.description|e }}</p>
+  <div class="swiper-container">
+    <div class="swiper-wrapper"> 
 
-        {% for attribute in step.attributes %}
+      <div class="swiper-slide" id="intro">
+        <img src="{{ url_for('static', filename='logo_cervecistas.svg') }}" />
+        <p>
+          Prototipo de recomendación de cervezas basado en un algortimo
+          de similitud coseno.
+        </p>
+        <p>
+          Los atributos de la cerveza se presentan según las distintas fases
+          del proceso de elaboración, y para su selección
+          se utiliza la distribución de los mismos sobre una muestra
+          de más de 1000 cervezas.
+        <p>
+          <br><br>#datathon mayo 2020
+        </p>
+      </div>
 
-          <h2>{{ attribute.name|e }}</h2>
+      {% for step in brewing_steps %}
+        <div class="swiper-slide step" id="{{ step.id|e }}">
+          <div class="step__wrapper">
+            <div class="step__description">
+              <h1>{{ step.name|e }}</h1>
+              <p>{{ step.description|e }}</p>
+            </div>
 
-          <div class="attribute__control">
-            <canvas id="attribute-{{ attribute.id }}"></canvas>
+            {%if step.attributes|length == 0 %}
+              <button id="guess">Obtener recomendación</button>
+            {% endif %}
 
-            <input name="{{ attribute.id }}" 
-              type="range" 
-              min="{{ attribute.min }}" 
-              max="{{ attribute.max }}"
-              value="{{ attribute.mean }}"
-              step="any" />
-          </div>
-          
-        {% else %}
-          {# last step without attributes is always the las one 
-            - d3 radar impl container <div id="radar"></div>
-          #}
-          <div id="selection">
-            <p>Tu selección:</p>
-            <h1 id="selection__title"></h1>
-            <p id="selection__description"></p>
-            <canvas id="selection__radar"></canvas>          
-          </div>
-          <div id="recommendation">
-            <p>Las recomendación para Cervecistas:</p>
-            {# TODO containers for recommendations #} 
-          </div>
-          <button id="guess">Guess</button>
-        {% endfor %}
+            <div class="step__controls">
+              {% for attribute in step.attributes %}
+                <div class="attribute">
+                  <h2>{{ attribute.name|e }}</h2>
 
-      </section>
-    {% endfor %}
+                  <div class="attribute__control">
+                    <canvas id="attribute-{{ attribute.id }}"></canvas>
+
+                    <input name="{{ attribute.id }}" 
+                      type="range" 
+                      min="{{ attribute.min }}" 
+                      max="{{ attribute.max }}"
+                      value="{{ attribute.mean }}"
+                      step="any" />
+                  </div>
+                </div> 
+              {% else %}
+                {# step without attributes is always the final one #}
+                <div id="result" class="is-hidden">
+                  <div id="selection" class="selection">
+                    <p>La cerveza más parecida a tu selección es:
+                      <span class="title"></span>
+                    </p>
+                    <p class="description"></p>                    
+                    {# not displaying radar for selection, just for recommendations #}      
+                  </div>
+                  <h2>La recomendación para Cervecistas:</h2>
+                  <div class="recommendations-wrapper">
+                    {# only 3 recommendations expected, draw empty containers to fill later #}
+                    {% for n in range(3) %}
+                      <div id="recommendation-{{ n }}" class="recommendation">
+                        <canvas class="radar"></canvas> 
+                        <h1 class="title"></h1>
+                        <p class="description"></p>                          
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>{# .step__wrapper #}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <div class="swiper-pagination"></div>
   </div>
+  
   <script>
     window.brewingSteps = {{ brewing_steps|tojson|safe }}
   </script>

@@ -1,47 +1,64 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  <div class="steps">
-    {% for step in brewing_steps %}
-      <section id="{{ step.id|e }}">
-        <h1>{{ step.name|e }}</h1>
-        <p>{{ step.description|e }}</p>
+  <div id="glide" class="steps glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {% for step in brewing_steps %}
+          <li class="glide__slide">
+            <section id="{{ step.id|e }}">
+              
+              <h1>{{ step.name|e }}</h1>
+              <p>{{ step.description|e }}</p>
 
-        {% for attribute in step.attributes %}
+              {% for attribute in step.attributes %}
 
-          <h2>{{ attribute.name|e }}</h2>
+                <h2>{{ attribute.name|e }}</h2>
 
-          <div class="attribute__control">
-            <canvas id="attribute-{{ attribute.id }}"></canvas>
+                <div class="attribute__control">
+                  <canvas id="attribute-{{ attribute.id }}"></canvas>
 
-            <input name="{{ attribute.id }}" 
-              type="range" 
-              min="{{ attribute.min }}" 
-              max="{{ attribute.max }}"
-              value="{{ attribute.mean }}"
-              step="any" />
-          </div>
-          
-        {% else %}
-          {# last step without attributes is always the las one 
-            - d3 radar impl container <div id="radar"></div>
-          #}
-          <div id="selection">
-            <p>Tu selección:</p>
-            <h1 id="selection__title"></h1>
-            <p id="selection__description"></p>
-            <canvas id="selection__radar"></canvas>          
-          </div>
-          <div id="recommendation">
-            <p>Las recomendación para Cervecistas:</p>
-            {# TODO containers for recommendations #} 
-          </div>
-          <button id="guess">Guess</button>
+                  <input name="{{ attribute.id }}" 
+                    type="range" 
+                    min="{{ attribute.min }}" 
+                    max="{{ attribute.max }}"
+                    value="{{ attribute.mean }}"
+                    step="any" />
+                </div>
+                
+              {% else %}
+                {# last step without attributes is always the las one 
+                  - d3 radar impl container <div id="radar"></div>
+                #}
+                <div id="selection">
+                  <p>Tu selección:</p>
+                  <h1 id="selection__title"></h1>
+                  <p id="selection__description"></p>
+                  <canvas id="selection__radar"></canvas>          
+                </div>
+                <div id="recommendation">
+                  <p>Las recomendación para Cervecistas:</p>
+                  {# TODO containers for recommendations #} 
+                </div>
+                <button id="guess">Guess</button>
+              {% endfor %}
+            </section>
+          </li>
         {% endfor %}
-
-      </section>
-    {% endfor %}
+      </ul>
+    </div>
+    
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+    </div>
+    <div class="glide__bullets" data-glide-el="controls[nav]">
+      {% for step in brewing_steps %}
+        <button class="glide__bullet" data-glide-dir="={{ loop.index0 }}"></button>
+      {% endfor %}
+    </div>
   </div>
+  
   <script>
     window.brewingSteps = {{ brewing_steps|tojson|safe }}
   </script>

@@ -2,6 +2,7 @@
 // - rangeSlider: https://github.com/Stryzhevskyi/rangeSlider
 // - brewingSteps: custom JSON
 // - Chart: https://www.chartjs.org/
+// - Glide: https://glidejs.com/docs/
 
 const guess = (attributes) => {
   // Makeup payload body bc server expects an array of objects
@@ -116,8 +117,8 @@ const setupRangeSliders = () => {
 }
 
 const setupGuessHandler = () => {
-  const button = document.querySelector('#guess')
-  button.addEventListener('click', () => {
+  const button = document.getElementById('guess')
+  button.addEventListener('click', () => {    
     const inputs = document.querySelectorAll('input')
     const attributes = {}
     inputs.forEach(input => attributes[input.name] = parseFloat(input.value))
@@ -193,9 +194,20 @@ const drawHistograms = () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   logging()
-  setupRangeSliders()
-  setupGuessHandler()
-  drawHistograms()
+    
+  const glide = new Glide('#glide', {
+    type: 'carousel',
+    perView: 1,
+    //focusAt: 'center',
+    startAt: 4
+  })  
+  // event listeners declaration always before `mount`
+  glide.on('mount.after', () => {
+    drawHistograms()
+    setupRangeSliders()
+    setupGuessHandler()    
+  })
+  glide.mount()
 });
 
 // Utility method to work with brewing steps spec, it flattens 

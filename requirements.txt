@@ -46,7 +46,7 @@ networkx==2.4
 nltk==3.4.5
 notebook==6.0.3
 numba==0.48.0
-numpy==1.18.2
+numpy==1.22.0
 packaging==20.3
 pandas==0.25.3
 pandas-profiling==2.5.0
